@@ -2,7 +2,6 @@
 
 int main()
 {
-	Engine engine;
-	engine.runEngine();
+	Engine::getInstance().run();
 }
 

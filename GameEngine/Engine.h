@@ -1,3 +1,6 @@
+#ifndef ENGINE_H
+#define ENGINE_H
+
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "stb_image.h"
@@ -11,16 +14,20 @@
 #include "callbacks.h"
 
 class Engine {
+private:
+	Engine() { };
 public:
-	Engine();
-	// calls GLFW initialization functions
-	void initGLFW();
-	// it's in the fucking name
-	GLFWwindow* createWindow();
-	// calls all functions that set glfw callbacks at once
-	void setCallbacks(GLFWwindow* window);
-	// begins the render loop
-	void render(GLFWwindow* window);
+	static Engine& getInstance()
+	{
+		static Engine instance; // thread-safe in C++ 11
+		return instance;
+	}
+
+	Engine(Engine const&)		  = delete;
+	void operator=(Engine const&) = delete;
+
 	// calls initialization, rendering, and basic setup functions 
-	void runEngine();
+	void run();
 };
+
+#endif
