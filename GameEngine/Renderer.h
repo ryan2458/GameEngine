@@ -5,7 +5,7 @@
 
 class Renderer {
 private:
-	Renderer() {}
+	Renderer() { std::cout << "LOG: New Renderer Instantiated." << std::endl; }
 public:
 	static Renderer& getInstance()
 	{
@@ -14,7 +14,7 @@ public:
 	}
 
 	Renderer(Renderer const&) = delete;
-	void operator=(Renderer const&) = delete;
+	void operator=(Renderer const&) = delete; // deletes instance if we reassign later
 
 	// begins the render loop
 	void render(GLFWwindow* window);

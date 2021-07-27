@@ -15,7 +15,7 @@
 
 class Engine {
 private:
-	Engine() { };
+	Engine() { std::cout << "LOG: New Engine Instantiated." << std::endl; };
 public:
 	static Engine& getInstance()
 	{

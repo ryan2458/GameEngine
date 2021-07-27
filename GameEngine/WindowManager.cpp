@@ -3,6 +3,7 @@
 
 WindowManager::WindowManager()
 {
+	std::cout << "LOG: New WindowManager Instantiated." << std::endl;
 	initGLFW();
 	mainWindow = createWindow();
 }
@@ -20,18 +21,18 @@ GLFWwindow* WindowManager::createWindow()
 	GLFWwindow* window = glfwCreateWindow(800, 600, "Engine", NULL, NULL);
 	if (window == NULL)
 	{
-		std::cout << "Failed to open window." << std::endl;
+		std::cout << "ERROR: Failed to open window." << std::endl;
 		return window;
 	}
 	glfwMakeContextCurrent(window);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) // how does this work?
 	{
-		std::cout << "Failed to initialize GLAD." << std::endl;
+		std::cout << "ERROR: Failed to initialize GLAD." << std::endl;
 		return window;
 	}
 
-	std::cout << "Window creation success!" << std::endl;
+	std::cout << "LOG: Window creation success!" << std::endl;
 
 	return window;
 }
@@ -40,7 +41,7 @@ GLFWwindow* WindowManager::getWindow()
 {
 	if (mainWindow == NULL)
 	{
-		std::cout << "Window is NULL" << std::endl;
+		std::cout << "WARNING: Window is NULL" << std::endl;
 	}
 
 	return mainWindow;
