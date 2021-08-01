@@ -6,13 +6,19 @@
 #include "IndexBuffer.h"
 #include <vector>
 
-class Sprite
+class Mesh
 {
 private:
+	unsigned int vbo;
+	unsigned int vao; 
 
+	void initRenderData();
 public:
-	Sprite(VertexBuffer vb, IndexBuffer ib) {  };
+	Mesh();
+	~Mesh();
 
+	void bind() const;
+	void unbind() const;
 
 };
 

@@ -14,13 +14,19 @@ class Shader
 public:
     // learnopengl.com constructor for basic shaders
     Shader(const char* vertexPath, const char* fragmentPath);
-    unsigned int getShaderID();
+    unsigned int getShaderId();
+    void use();
+    void setMatrix4(const std::string& name, glm::mat4 matrix);
+    void setVector4f(const std::string& name, glm::vec4 vector);
+    void setVector3f(const std::string& name, glm::vec3 vector);
+
 private:
     // shader ID
-    unsigned int ID;
+    unsigned int shaderId;
     // utility function for checking shader compilation/linking errors.
     // ------------------------------------------------------------------------
     void checkCompileErrors(GLuint shader, std::string type);
+    
 };
 
 #endif

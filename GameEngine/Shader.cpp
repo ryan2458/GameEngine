@@ -45,11 +45,11 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glCompileShader(fragment);
     checkCompileErrors(fragment, "FRAGMENT");
     // shader Program
-    ID = glCreateProgram();
-    glAttachShader(ID, vertex);
-    glAttachShader(ID, fragment);
-    glLinkProgram(ID);
-    checkCompileErrors(ID, "PROGRAM");
+    shaderId = glCreateProgram();
+    glAttachShader(shaderId, vertex);
+    glAttachShader(shaderId, fragment);
+    glLinkProgram(shaderId);
+    checkCompileErrors(shaderId, "PROGRAM");
     // delete the shaders as they're linked into our program now and no longer necessery
     glDeleteShader(vertex);
     glDeleteShader(fragment);
@@ -82,7 +82,30 @@ void Shader::checkCompileErrors(GLuint shader, std::string type)
     }
 }
 
-unsigned int Shader::getShaderID()
+unsigned int Shader::getShaderId()
 {
-    return ID;
+    return shaderId;
+}
+
+void Shader::use()
+{
+    glUseProgram(shaderId);
+}
+
+void Shader::setMatrix4(const std::string& name, glm::mat4 matrix)
+{
+    GLuint location = glGetUniformLocation(getShaderId(), name.c_str());
+    glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
+}
+
+void Shader::setVector3f(const std::string& name, glm::vec3 vector)
+{
+    GLuint location = glGetUniformLocation(getShaderId(), name.c_str());
+    glUniform3f(location, vector.x, vector.y, vector.z);
+}
+
+void Shader::setVector4f(const std::string& name, glm::vec4 vector)
+{
+    GLuint location = glGetUniformLocation(getShaderId(), name.c_str());
+    glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
 }

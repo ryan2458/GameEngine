@@ -29,7 +29,9 @@ public:
 	// returns a pointer to the main window
 	GLFWwindow* getWindow();
 	// calls all functions that set glfw callbacks at once
-	void setCallbacks(GLFWwindow* window);
+	void setCallbacks();
+
+	void endFrame();
 };
 
 #endif

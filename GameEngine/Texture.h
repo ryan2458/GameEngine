@@ -7,7 +7,7 @@ class Texture
 {
 private:
 	std::string filepath;
-	unsigned int ID;
+	unsigned int textureId;
 	unsigned char* textureBuffer;
 	int width, height, channels;
 public:
@@ -18,6 +18,9 @@ public:
 
 	inline int getWidth()  const { return width; }
 	inline int getHeight() const { return height; }
+
+	void bind() const;
+	void unbind() const;
 };
 
 

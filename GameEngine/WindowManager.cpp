@@ -6,6 +6,7 @@ WindowManager::WindowManager()
 	std::cout << "LOG: New WindowManager Instantiated." << std::endl;
 	initGLFW();
 	mainWindow = createWindow();
+	setCallbacks();
 }
 
 void WindowManager::initGLFW()
@@ -47,7 +48,13 @@ GLFWwindow* WindowManager::getWindow()
 	return mainWindow;
 }
 
-void WindowManager::setCallbacks(GLFWwindow* window)
+void WindowManager::endFrame()
 {
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSwapBuffers(mainWindow);
+	glfwPollEvents();
+}
+
+void WindowManager::setCallbacks()
+{
+	glfwSetFramebufferSizeCallback(mainWindow, framebuffer_size_callback);
 }

@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-Texture::Texture(const std::string& path) : filepath(path), ID(0), textureBuffer(nullptr),
+Texture::Texture(const std::string& path) : filepath(path), textureId(0), textureBuffer(nullptr),
 	width(0), height(0), channels(0)
 {
 	generateTexture(path);
@@ -8,13 +8,13 @@ Texture::Texture(const std::string& path) : filepath(path), ID(0), textureBuffer
 
 Texture::~Texture()
 {
-	glDeleteTextures(1, &ID);
+	glDeleteTextures(1, &textureId);
 }
 
 void Texture::generateTexture(const std::string& path)
 {
-	glGenTextures(1, &ID);
-	glBindTexture(GL_TEXTURE_2D, ID);
+	glGenTextures(1, &textureId);
+	glBindTexture(GL_TEXTURE_2D, textureId);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -32,4 +32,14 @@ void Texture::generateTexture(const std::string& path)
 	}
 
 	stbi_image_free(textureBuffer);
+}
+
+void Texture::bind() const
+{
+	glBindTexture(GL_TEXTURE_2D, textureId);
+}
+
+void Texture::unbind() const
+{
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
