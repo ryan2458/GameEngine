@@ -45,7 +45,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glCompileShader(fragment);
     checkCompileErrors(fragment, "FRAGMENT");
     // shader Program
-    this->ID = glCreateProgram();
+    ID = glCreateProgram();
     glAttachShader(ID, vertex);
     glAttachShader(ID, fragment);
     glLinkProgram(ID);
@@ -84,5 +84,5 @@ void Shader::checkCompileErrors(GLuint shader, std::string type)
 
 unsigned int Shader::getShaderID()
 {
-    return this->ID;
+    return ID;
 }

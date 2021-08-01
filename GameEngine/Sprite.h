@@ -1,13 +1,19 @@
-#include "Engine.h"
-#include <fstream>
+#ifndef MESH_H
+#define MESH_H
 
-/*
-Definition: 
-*/
-class Sprite {
-public:
-	
+#include "Engine.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include <vector>
+
+class Sprite
+{
 private:
-	std::string filepath;
+
+public:
+	Sprite(VertexBuffer vb, IndexBuffer ib) {  };
+
 
 };
+
+#endif

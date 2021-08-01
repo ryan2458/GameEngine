@@ -18,6 +18,7 @@ public:
 
 	// begins the render loop
 	void render(GLFWwindow* window);
+	void renderTextures();
 };
 
 #endif
