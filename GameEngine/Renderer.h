@@ -12,9 +12,15 @@ class Shader;
 class Renderer {
 private:
 	glm::mat4 projection;
+	// these should not be changed
 	Mesh defaultMesh;
 	Texture defaultTexture;
 	Shader defaultShader;
+
+	// Add these and require that they get changed with setters?
+	//Mesh* mesh;
+	//Texture* texture;
+	//Shader* shader;
 	Renderer();
 public:
 	static Renderer& getInstance()
@@ -36,10 +42,14 @@ public:
 	static void renderMesh(const glm::vec2& size = glm::vec2(10.0f, 10.0f),
 		const glm::vec2& position = glm::vec2(0.0f, 0.0f), 
 		float angle = 90.0f,
-		Mesh* mesh = &(Renderer::getInstance().defaultMesh),
-		Texture* texture = &(Renderer::getInstance().defaultTexture),
-		Shader* shader = &(Renderer::getInstance().defaultShader),
+		Mesh* mesh = nullptr,
+		Texture* texture = nullptr,
+		Shader* shader = nullptr,
 		const glm::vec4& tint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+	static void setMesh(Mesh* mesh);
+	static void setTexture(Texture* texture);
+	static void setShader(Shader* shader);
 };
 
 #endif

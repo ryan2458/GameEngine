@@ -26,7 +26,7 @@ int main()
 
 		// TODO: Add default texture (white square), default shader, default mesh (square mesh)
 		//Renderer::renderMesh(size, position, angle, &quadMesh, &texture, &shader, tint);
-		Renderer::renderMesh(size, position, angle);
+		Renderer::renderMesh(size, position, angle, nullptr, nullptr, nullptr);
 
 
 		WindowManager::getInstance().endFrame();

@@ -41,6 +41,19 @@ void Renderer::setBackgroundColor(const glm::vec4& color)
 void Renderer::renderMesh(const glm::vec2& size, const glm::vec2& position,
 	float angle, Mesh* mesh, Texture* texture, Shader* shader, const glm::vec4& tint)
 {
+	if (mesh == nullptr)
+	{
+		mesh = &Renderer::getInstance().defaultMesh;
+	}
+	if (texture == nullptr)
+	{
+		texture = &Renderer::getInstance().defaultTexture;
+	}
+	if (shader == nullptr)
+	{
+		shader = &Renderer::getInstance().defaultShader;
+	}
+
 	shader->use();
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
@@ -75,5 +88,23 @@ void Renderer::renderMesh(const glm::vec2& size, const glm::vec2& position,
 		texture->unbind();
 	}
 }
+
+
+/* May remove later, not implementing just yet */
+void Renderer::setMesh(Mesh* mesh)
+{
+	
+}
+
+void Renderer::setTexture(Texture* texture)
+{
+	
+}
+
+void Renderer::setShader(Shader* shader)
+{
+	
+}
+/* ------------------------------------------------ */
 
 
