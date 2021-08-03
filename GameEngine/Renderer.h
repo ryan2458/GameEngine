@@ -13,11 +13,7 @@ private:
 	Mesh defaultMesh;
 	Texture defaultTexture;
 	Shader defaultShader;
-
-	// Add these and require that they get changed with setters?
-	//Mesh* mesh;
-	//Texture* texture;
-	//Shader* shader;
+	// ---------------------------
 	Renderer();
 public:
 	static Renderer& getInstance()
@@ -44,9 +40,6 @@ public:
 		Shader* shader = nullptr,
 		const glm::vec4& tint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
-	static void setMesh(Mesh* mesh);
-	static void setTexture(Texture* texture);
-	static void setShader(Shader* shader);
 };
 
 #endif

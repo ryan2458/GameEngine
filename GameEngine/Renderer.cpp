@@ -90,21 +90,3 @@ void Renderer::renderMesh(const glm::vec2& size, const glm::vec2& position,
 }
 
 
-/* May remove later, not implementing just yet */
-void Renderer::setMesh(Mesh* mesh)
-{
-	
-}
-
-void Renderer::setTexture(Texture* texture)
-{
-	
-}
-
-void Renderer::setShader(Shader* shader)
-{
-	
-}
-/* ------------------------------------------------ */
-
-
