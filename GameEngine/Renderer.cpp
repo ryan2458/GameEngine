@@ -3,7 +3,8 @@
 #include "Shader.h"
 #include "Texture.h"
 
-Renderer::Renderer()
+Renderer::Renderer() : defaultTexture(Texture("square.png")), defaultShader(Shader("vertexShader.shader", "fragmentShader.shader")), 
+	defaultMesh(Mesh()) // initializing with mesh not needed, but added for style
 {
 	std::cout << "LOG: New Renderer Instantiated." << std::endl;
 	setProjectionMatrix(800.0f, 600.0f);
@@ -37,8 +38,8 @@ void Renderer::setBackgroundColor(const glm::vec4& color)
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::renderMesh(Mesh& mesh, const glm::vec2& size, const glm::vec2& position,
-	float angle, Texture* texture, Shader* shader, const glm::vec4& tint)
+void Renderer::renderMesh(const glm::vec2& size, const glm::vec2& position,
+	float angle, Mesh* mesh, Texture* texture, Shader* shader, const glm::vec4& tint)
 {
 	shader->use();
 	glm::mat4 model = glm::mat4(1.0f);
@@ -64,10 +65,10 @@ void Renderer::renderMesh(Mesh& mesh, const glm::vec2& size, const glm::vec2& po
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	mesh.bind();
+	mesh->bind();
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-	mesh.unbind();
+	mesh->unbind();
 
 	if (texture != nullptr)
 	{

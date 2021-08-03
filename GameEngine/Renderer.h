@@ -3,6 +3,8 @@
 
 #include "Engine.h"
 #include "Mesh.h"
+#include "Texture.h"
+#include "Shader.h"
 
 class Texture;
 class Shader;
@@ -10,6 +12,9 @@ class Shader;
 class Renderer {
 private:
 	glm::mat4 projection;
+	Mesh defaultMesh;
+	Texture defaultTexture;
+	Shader defaultShader;
 	Renderer();
 public:
 	static Renderer& getInstance()
@@ -28,11 +33,12 @@ public:
 	void renderTextures();
 
 	static void setBackgroundColor(const glm::vec4& color);
-	static void renderMesh(Mesh& mesh, const glm::vec2& size = glm::vec2(10.0f, 10.0f),
+	static void renderMesh(const glm::vec2& size = glm::vec2(10.0f, 10.0f),
 		const glm::vec2& position = glm::vec2(0.0f, 0.0f), 
 		float angle = 90.0f,
-		Texture* texture = nullptr,
-		Shader* shader = nullptr,
+		Mesh* mesh = &(Renderer::getInstance().defaultMesh),
+		Texture* texture = &(Renderer::getInstance().defaultTexture),
+		Shader* shader = &(Renderer::getInstance().defaultShader),
 		const glm::vec4& tint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 };
 

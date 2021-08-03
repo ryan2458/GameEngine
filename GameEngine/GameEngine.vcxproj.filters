@@ -108,5 +108,8 @@
     <Image Include="awesomeface.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="square.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -3,14 +3,14 @@
 void Mesh::initRenderData()
 {
 	float vertices[] = {
-        // pos      // tex
-        0.0f, 1.0f, 0.0f, 1.0f,
-        1.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 0.0f,
-
-        0.0f, 1.0f, 0.0f, 1.0f,
-        1.0f, 1.0f, 1.0f, 1.0f,
-        1.0f, 0.0f, 1.0f, 0.0f
+        // pos       // tex     
+        0.0f, 1.0f,  0.0f, 1.0f,
+        1.0f, 0.0f,  1.0f, 0.0f,
+        0.0f, 0.0f,  0.0f, 0.0f,
+                     
+        0.0f, 1.0f,  0.0f, 1.0f,
+        1.0f, 1.0f,  1.0f, 1.0f,
+        1.0f, 0.0f,  1.0f, 0.0f
 	};
 
     glGenVertexArrays(1, &vao);
