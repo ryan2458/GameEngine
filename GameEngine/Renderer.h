@@ -6,9 +6,6 @@
 #include "Texture.h"
 #include "Shader.h"
 
-class Texture;
-class Shader;
-
 class Renderer {
 private:
 	glm::mat4 projection;
