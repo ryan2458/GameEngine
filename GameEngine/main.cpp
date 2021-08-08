@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "WindowManager.h"
 #include "Renderer.h"
+#include "Component.h"
 
 int main()
 {
@@ -12,6 +13,9 @@ int main()
 	Shader shader("vertex.shader", "fragment.shader");
 	Texture texture("awesomeface.png");
 	Mesh quadMesh;
+
+	
+
 
 	glm::vec2 position = glm::vec2(1.0f, 1.0f);
 	glm::vec2 size = glm::vec2(100.0f, 100.0f);

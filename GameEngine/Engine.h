@@ -12,10 +12,13 @@
 #include <iostream>
 
 #include "callbacks.h"
+#include "BasedObject.h"
+#include "GameObjectManager.h"
 
 class Engine {
 private:
-	Engine() { std::cout << "LOG: New Engine Instantiated." << std::endl; };
+	float initialTime;
+	Engine();
 public:
 	static Engine& getInstance()
 	{
@@ -26,8 +29,11 @@ public:
 	Engine(Engine const&)		  = delete;
 	void operator=(Engine const&) = delete;
 
+	GameObjectManager gameObjectManager;
+
 	// calls initialization, rendering, and basic setup functions 
 	void run();
+	float getDeltaTime();
 };
 
 #endif
