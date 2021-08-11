@@ -17,7 +17,12 @@ public:
 
 	void add(Component* component);
 	void remove(Component* component);
-	void updateComponents();
+
+	void load()                  override;
+	void init()                  override;
+	void update(float deltaTime) override;
+	void draw()                  override;
+	void unload()                override;
 };
 
 #endif

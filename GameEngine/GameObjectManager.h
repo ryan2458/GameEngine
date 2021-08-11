@@ -6,7 +6,7 @@
 
 class GameObject;
 
-class GameObjectManager
+class GameObjectManager : public BasedObject
 {
 private:
 	std::vector<GameObject*> gameObjects;
@@ -15,7 +15,13 @@ public:
 
 	void create();
 	void destroy(GameObject* gameObject);
-	void updateObjects();
+
+	void load()                  override;
+	void init()                  override;
+	void update(float deltaTime) override;
+	void draw()                  override;
+	void unload()                override;
+
 };
 
 #endif

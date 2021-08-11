@@ -10,7 +10,12 @@ Component::~Component()
 
 }
 
-GameObject* Component::getGameObject() const
-{
-	return nullptr;
-}
+//GameObject* Component::getGameObject() const
+//{
+//	return (GameObject*)getParent();
+//}
+//
+//void* Component::getParent()
+//{
+//	return this->getParent();
+//}

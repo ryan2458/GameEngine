@@ -14,10 +14,12 @@ public:
 
 	virtual void load();
 	virtual void init();
-	virtual void update(float dt);
+	virtual void update(float deltaTime);
 	virtual void draw();
 	virtual void shutdown();
 	virtual void unload(); 
+
+	//virtual void* getParent();
 
 	inline const std::string& getName() { return name; }
 };

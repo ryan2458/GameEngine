@@ -11,9 +11,11 @@ class Component : public BasedObject
 public:
 	Component(const std::string& name);
 	virtual ~Component();
-	GameObject* getGameObject() const;
+	//GameObject* getGameObject() const;
 
 	virtual Component* clone() = 0;
+
+	//void* getParent() override;
 };
 
 #endif

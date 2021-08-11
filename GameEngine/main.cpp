@@ -15,7 +15,7 @@ int main()
 	Mesh quadMesh;
 
 	
-
+	Engine::getInstance().gameObjectManager.create();
 
 	glm::vec2 position = glm::vec2(1.0f, 1.0f);
 	glm::vec2 size = glm::vec2(100.0f, 100.0f);
@@ -26,8 +26,10 @@ int main()
 	{
 		Renderer::setBackgroundColor(glm::vec4(0.2f, 0.3f, 0.3f, 1.0f));
 
-		Renderer::renderMesh(size, position, angle, nullptr, nullptr, nullptr, glm::vec4(0.2f, 0.3f, 0.1f, 1.0f));
-		Renderer::renderMesh(size, glm::vec2(500.0f, 500.0f), 90.0f, nullptr, &texture);
+		/*Renderer::renderMesh(size, position, angle, nullptr, nullptr, nullptr, glm::vec4(0.2f, 0.3f, 0.1f, 1.0f));
+		Renderer::renderMesh(size, glm::vec2(500.0f, 500.0f), 90.0f, nullptr, &texture);*/
+
+		Engine::getInstance().gameObjectManager.draw();
 
 		WindowManager::getInstance().endFrame();
 	}

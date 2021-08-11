@@ -1,7 +1,7 @@
 #include "GameObjectManager.h"
 #include "GameObject.h"
 
-GameObjectManager::GameObjectManager()
+GameObjectManager::GameObjectManager() : BasedObject("GameObjectManager")
 {
 }
 
@@ -18,10 +18,32 @@ void GameObjectManager::destroy(GameObject* gameObject)
 	gameObjects.erase(it);
 }
 
-void GameObjectManager::updateObjects()
+void GameObjectManager::load()
+{
+
+}
+
+void GameObjectManager::init()
+{
+}
+
+void GameObjectManager::update(float deltaTime)
 {
 	for (GameObject* go : gameObjects)
 	{
-		go->updateComponents();
+		go->update(deltaTime);
 	}
+}
+
+void GameObjectManager::draw()
+{
+	for (GameObject* go : gameObjects)
+	{
+		go->draw();
+	}
+}
+
+void GameObjectManager::unload()
+{
+	
 }
