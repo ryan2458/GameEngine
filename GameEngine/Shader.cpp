@@ -54,6 +54,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glDeleteShader(vertex);
     glDeleteShader(fragment);
 
+    //setParent(&Engine::getInstance());
 }
 
 void Shader::checkCompileErrors(GLuint shader, std::string type)
@@ -109,3 +110,4 @@ void Shader::setVector4f(const std::string& name, glm::vec4 vector)
     GLuint location = glGetUniformLocation(getShaderId(), name.c_str());
     glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
 }
+

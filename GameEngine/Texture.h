@@ -3,7 +3,7 @@
 
 #include "Engine.h"
 
-class Texture
+class Texture : public BasedObject
 {
 private:
 	std::string filepath;

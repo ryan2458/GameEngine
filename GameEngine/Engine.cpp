@@ -16,7 +16,11 @@ float Engine::getDeltaTime()
 	return deltaTime;
 }
 
-Engine::Engine() : initialTime(glfwGetTime())
+Engine::Engine() : BasedObject("Engine"), initialTime(glfwGetTime())
 {
 	std::cout << "LOG: New Engine Instantiated." << std::endl;
+}
+
+Engine::~Engine()
+{
 }

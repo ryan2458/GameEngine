@@ -19,8 +19,8 @@ public:
 	virtual void shutdown();
 	virtual void unload(); 
 
-	//virtual void* getParent();
-
+	inline BasedObject* getParent() { return parent; }
+	inline void setParent(BasedObject* newParent) { parent = newParent; }
 	inline const std::string& getName() { return name; }
 };
 

@@ -5,7 +5,10 @@
 #include "GLFW/glfw3.h"
 #include <iostream>
 
-class WindowManager {
+#include "BasedObject.h"
+
+class WindowManager : public BasedObject
+{
 	//----Singleton Pattern-----
 private:
 	WindowManager();

@@ -14,13 +14,14 @@ int main()
 	Texture texture("awesomeface.png");
 	Mesh quadMesh;
 
-	
-	Engine::getInstance().gameObjectManager.create();
 
-	glm::vec2 position = glm::vec2(1.0f, 1.0f);
+	glm::vec2 position = glm::vec2(50.0f, 50.0f);
 	glm::vec2 size = glm::vec2(100.0f, 100.0f);
 	glm::vec4 tint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	float angle = 180.0f;
+
+	Engine::getInstance().gameObjectManager.create();
+	Engine::getInstance().gameObjectManager.create(&size, &position);
 
 	while (!glfwWindowShouldClose(window))
 	{

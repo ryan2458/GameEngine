@@ -1,7 +1,7 @@
 #include "WindowManager.h"
 #include "callbacks.h"
 
-WindowManager::WindowManager()
+WindowManager::WindowManager() : BasedObject("WindowManager")
 {
 	std::cout << "LOG: New WindowManager Instantiated." << std::endl;
 	initGLFW();

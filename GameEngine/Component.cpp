@@ -10,12 +10,9 @@ Component::~Component()
 
 }
 
-//GameObject* Component::getGameObject() const
-//{
-//	return (GameObject*)getParent();
-//}
-//
-//void* Component::getParent()
-//{
-//	return this->getParent();
-//}
+GameObject* Component::getGameObject()
+{
+	return (GameObject*)getParent();
+}
+
+

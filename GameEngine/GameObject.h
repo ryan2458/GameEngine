@@ -11,12 +11,19 @@ class GameObject : public BasedObject
 {
 private:
 	std::vector<Component*> components;
+	// temporary, will be moved to transform later
+	glm::vec2 size;
+	glm::vec2 position;
 public:
 	GameObject();
+	GameObject(glm::vec2 size, glm::vec2 position);
 	~GameObject() override;
 
-	void add(Component* component);
-	void remove(Component* component);
+	void addComponent(Component* component);
+	void removeComponent(Component* component);
+
+	void addChild(GameObject* toAdd);
+	void removeChild(GameObject* toRemove);
 
 	void load()                  override;
 	void init()                  override;

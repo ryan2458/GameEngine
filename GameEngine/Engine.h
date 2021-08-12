@@ -13,12 +13,14 @@
 
 #include "callbacks.h"
 #include "BasedObject.h"
+// TODO: Fix circular include -> Engine included in GameObjectManager.h
 #include "GameObjectManager.h"
 
-class Engine {
+class Engine : public BasedObject {
 private:
 	float initialTime;
 	Engine();
+	~Engine();
 public:
 	static Engine& getInstance()
 	{

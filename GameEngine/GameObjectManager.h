@@ -1,8 +1,14 @@
 #ifndef GAME_OBJECT_MANAGER_H
 #define GAME_OBJECT_MANAGER_H
 
-#include "BasedObject.h"
+
 #include <vector>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include "Engine.h"
 
 class GameObject;
 
@@ -14,6 +20,10 @@ public:
 	GameObjectManager();
 
 	void create();
+	void create(glm::vec2* size, glm::vec2* position);
+
+	void addObject(GameObject* toAdd);
+
 	void destroy(GameObject* gameObject);
 
 	void load()                  override;
