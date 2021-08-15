@@ -3,7 +3,6 @@
 
 GameObjectManager::GameObjectManager() : BasedObject("GameObjectManager")
 {
-	//setParent(&Engine::getInstance());
 }
 
 void GameObjectManager::create()

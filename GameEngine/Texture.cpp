@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-Texture::Texture(const std::string& path) : BasedObject("Texture"), filepath(path), textureId(0), textureBuffer(nullptr),
+Texture::Texture(const std::string& path) : filepath(path), textureId(0), textureBuffer(nullptr),
 	width(0), height(0), channels(0)
 {
 	generateTexture(path);

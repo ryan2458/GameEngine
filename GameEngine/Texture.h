@@ -1,9 +1,13 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#include "Engine.h"
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
+#include "stb_image.h"
 
-class Texture : public BasedObject
+#include <string>
+
+class Texture
 {
 private:
 	std::string filepath;

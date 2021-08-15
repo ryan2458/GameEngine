@@ -1,7 +1,11 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
-#include "Engine.h"
+// remove later when we have transform
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "BasedObject.h"
 #include <vector>
 

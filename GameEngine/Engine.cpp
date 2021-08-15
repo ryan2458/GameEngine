@@ -19,6 +19,7 @@ float Engine::getDeltaTime()
 Engine::Engine() : BasedObject("Engine"), initialTime(glfwGetTime())
 {
 	std::cout << "LOG: New Engine Instantiated." << std::endl;
+	gameObjectManager.setParent(this);
 }
 
 Engine::~Engine()

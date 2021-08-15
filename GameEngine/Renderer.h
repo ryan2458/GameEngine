@@ -1,7 +1,6 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "Engine.h"
 #include "Mesh.h"
 #include "Texture.h"
 #include "Shader.h"
