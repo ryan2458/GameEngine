@@ -12,17 +12,30 @@ void GameObjectManager::create()
 }
 
 // will remove later
-void GameObjectManager::create(glm::vec2* size, glm::vec2* position)
-{
-	GameObject* gameObject = new GameObject(*size, *position);
-	gameObjects.push_back(gameObject);
-}
+//void GameObjectManager::create(glm::vec2* size, glm::vec2* position)
+//{
+//	GameObject* gameObject = new GameObject(*size, *position);
+//	gameObjects.push_back(gameObject);
+//}
 
 void GameObjectManager::destroy(GameObject* gameObject)
 {
 	std::vector<GameObject*>::iterator it = std::find(gameObjects.begin(), gameObjects.end(), gameObject);
 	delete gameObject;
 	gameObjects.erase(it);
+}
+
+GameObject* GameObjectManager::find(const std::string& name)
+{
+	for (std::vector<GameObject*>::iterator it = gameObjects.begin(); it != gameObjects.end(); ++it)
+	{
+		if ((*it)->getName() == name)
+		{
+			return *it;
+		}
+	}
+
+	return nullptr;
 }
 
 void GameObjectManager::load()

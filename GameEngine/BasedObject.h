@@ -21,7 +21,7 @@ public:
 
 	inline BasedObject* getParent() { return parent; }
 	inline void setParent(BasedObject* newParent) { parent = newParent; }
-	inline const std::string& getName() { return name; }
+	inline const std::string& getName() const { return name; }
 };
 
 #endif

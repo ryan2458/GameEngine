@@ -16,12 +16,17 @@ class GameObject : public BasedObject
 private:
 	std::vector<Component*> components;
 	// temporary, will be moved to transform later
-	glm::vec2 size;
-	glm::vec2 position;
+	//glm::vec2 size;
+	//glm::vec2 position;
+
+	static std::string generateDefaultName();
 public:
 	GameObject();
-	GameObject(glm::vec2 size, glm::vec2 position);
+	//GameObject(glm::vec2 size, glm::vec2 position);
 	~GameObject() override;
+
+	template <class T>
+	T* getComponent();
 
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
@@ -37,3 +42,19 @@ public:
 };
 
 #endif
+
+template<class T>
+inline T* GameObject::getComponent()
+{
+	T* returnComp = nullptr;
+
+	for (Component* comp : components)
+	{
+		if (dynamic_cast<T*>(comp) != nullptr)
+		{
+			return (T*)comp;
+		}
+	}
+
+	return nullptr;
+}

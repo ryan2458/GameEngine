@@ -1,17 +1,28 @@
-#include "GameObject.h"
 #include "Component.h"
+#include "GameObject.h"
 #include "Renderer.h"
+#include "Transform.h"
 
-GameObject::GameObject() : BasedObject("GameObject")
+std::string GameObject::generateDefaultName()
 {
-	size = glm::vec2(10.0f, 10.0f);
-	position = glm::vec2(0.0f, 0.0f);
+	static int count = 0;
+	static std::string defaultName = "GameObject0";
+	defaultName.back() = std::to_string(count).back();
+	count += 1;
+
+	return defaultName;
 }
 
-GameObject::GameObject(glm::vec2 size, glm::vec2 position) : BasedObject("GameObject"), size(size), position(position)
+GameObject::GameObject() : BasedObject(generateDefaultName())
 {
-
+	//size = glm::vec2(10.0f, 10.0f);
+	//position = glm::vec2(0.0f, 0.0f);
 }
+
+//GameObject::GameObject(glm::vec2 size, glm::vec2 position) : BasedObject("GameObject"), size(size), position(position)
+//{
+//
+//}
 
 GameObject::~GameObject()
 {
@@ -60,6 +71,8 @@ void GameObject::update(float deltaTime)
 
 void GameObject::draw()
 {
+	glm::vec2 size = glm::vec2(getComponent<Transform>()->getScaleX(), getComponent<Transform>()->getScaleY());
+	glm::vec2 position = glm::vec2(getComponent<Transform>()->getX(), getComponent<Transform>()->getY());
 	Renderer::getInstance().renderMesh(size, position);
 }
 

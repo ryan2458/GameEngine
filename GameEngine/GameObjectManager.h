@@ -20,17 +20,19 @@ public:
 	GameObjectManager();
 
 	void create();
-	void create(glm::vec2* size, glm::vec2* position);
+	//void create(glm::vec2* size, glm::vec2* position);
 
 	void addObject(GameObject* toAdd);
-
 	void destroy(GameObject* gameObject);
+
+	GameObject* find(const std::string& name);
 
 	void load()                  override;
 	void init()                  override;
 	void update(float deltaTime) override;
 	void draw()                  override;
 	void unload()                override;
+
 
 };
 

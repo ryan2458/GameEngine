@@ -8,18 +8,21 @@ class Transform : public Component
 {
 private:
 	glm::vec4 position;
-	glm::vec3 scale;
+	glm::vec3 scalar;
 	float angle;
 
 public:
 	Transform();
+	Transform(const Transform& copy);
 	~Transform();
 
-	double getX();
-	double getY();
-	double getAngle();
-	double getScaleX();
-	double getScaleY();
+	Transform& operator=(const Transform& rhs);
+
+	double getX() const;
+	double getY() const;
+	double getAngle() const;
+	double getScaleX() const;
+	double getScaleY() const;
 
 	void setX(double newX);
 	void setY(double newY);
@@ -30,6 +33,8 @@ public:
 	void translate(glm::vec3 vector);
 	void rotate(float radians);
 	void scale(glm::vec3 scalar);
+
+	Component* clone() override;
 };
 
 #endif

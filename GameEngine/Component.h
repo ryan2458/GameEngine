@@ -14,7 +14,6 @@ public:
 	GameObject* getGameObject();
 
 	virtual Component* clone() = 0;
-
 };
 
 #endif
