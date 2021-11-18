@@ -53,8 +53,6 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     // delete the shaders as they're linked into our program now and no longer necessery
     glDeleteShader(vertex);
     glDeleteShader(fragment);
-
-    //setParent(&Engine::getInstance());
 }
 
 void Shader::checkCompileErrors(GLuint shader, std::string type)

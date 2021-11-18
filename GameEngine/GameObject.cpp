@@ -15,14 +15,8 @@ std::string GameObject::generateDefaultName()
 
 GameObject::GameObject() : BasedObject(generateDefaultName())
 {
-	//size = glm::vec2(10.0f, 10.0f);
-	//position = glm::vec2(0.0f, 0.0f);
-}
 
-//GameObject::GameObject(glm::vec2 size, glm::vec2 position) : BasedObject("GameObject"), size(size), position(position)
-//{
-//
-//}
+}
 
 GameObject::~GameObject()
 {
@@ -73,7 +67,8 @@ void GameObject::draw()
 {
 	glm::vec2 size = glm::vec2(getComponent<Transform>()->getScaleX(), getComponent<Transform>()->getScaleY());
 	glm::vec2 position = glm::vec2(getComponent<Transform>()->getX(), getComponent<Transform>()->getY());
-	Renderer::getInstance().renderMesh(size, position);
+	float angle = getComponent<Transform>()->getAngle();
+	Renderer::getInstance().renderMesh(size, position, angle);
 }
 
 void GameObject::unload()

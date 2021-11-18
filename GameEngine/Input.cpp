@@ -15,5 +15,10 @@ void Input::processBasicInput(GLFWwindow* window)
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
+
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+	{
+		// set state that's in a different header
+	}
 }
 
