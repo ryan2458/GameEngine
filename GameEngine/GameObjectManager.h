@@ -16,11 +16,14 @@ class GameObjectManager : public BasedObject
 {
 private:
 	std::vector<GameObject*> gameObjects;
+
+	GameObject* createGameObject();
 public:
 	GameObjectManager();
 	~GameObjectManager();
 
 	GameObject* create();
+	GameObject* create(glm::vec3 location);
 
 	void addObject(GameObject* toAdd);
 	void destroy(GameObject*& gameObject);

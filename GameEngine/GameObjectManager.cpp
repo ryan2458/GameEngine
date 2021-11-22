@@ -2,6 +2,15 @@
 #include "GameObject.h"
 #include "Transform.h"
 
+GameObject* GameObjectManager::createGameObject()
+{
+	GameObject* gameObject = new GameObject();
+	gameObject->addComponent(new Transform());
+	gameObjects.push_back(gameObject);
+
+	return gameObject;
+}
+
 GameObjectManager::GameObjectManager() : BasedObject("GameObjectManager")
 {
 }
@@ -16,9 +25,16 @@ GameObjectManager::~GameObjectManager()
 
 GameObject* GameObjectManager::create()
 {
-	GameObject* gameObject = new GameObject();
-	gameObject->addComponent(new Transform());
-	gameObjects.push_back(gameObject);
+	return createGameObject();
+}
+
+GameObject* GameObjectManager::create(glm::vec3 location)
+{
+	GameObject* gameObject = createGameObject();
+	gameObject->transform->position.x = location.x;
+	gameObject->transform->position.y = location.y;
+	gameObject->transform->position.z = location.z;
+	gameObject->transform->position.w = 1.0f;
 
 	return gameObject;
 }
