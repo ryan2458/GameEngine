@@ -40,22 +40,6 @@ int main()
 
 void testFunction(GLFWwindow* window, GameObjectManager* gom, GameObject* myObj)
 {
-	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
-	{
-		if (myObj == nullptr)
-		{
-			myObj = gom->create();
-		}
-	}
-
-	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-	{
-		if (myObj != nullptr)
-		{
-			gom->destroy(myObj);
-		}
-	}
-
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 	{
 		myObj->transform->position.x -= 0.25;
