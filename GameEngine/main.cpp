@@ -9,56 +9,23 @@
 #include "GameObject.h"
 #include "Transform.h"
 
+void testFunction(GLFWwindow* window, GameObjectManager* gom, GameObject* myObj);
+
 int main()
 {
 	//Engine::getInstance().run(); THE GOAL
 	GLFWwindow* window = WindowManager::getInstance().getWindow();
 
-	Engine::getInstance().gameObjectManager.create();
-	GameObject* myObj = Engine::getInstance().gameObjectManager.find("GameObject0");
-	myObj->addComponent(new Transform());
-	//myObj->addComponent(new Texture("awesomeface.png"));
+	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
+	gom->create();
+	GameObject* myObj = gom->find("GameObject0");
 
-	myObj->getComponent<Transform>()->setX(50.0);
-	myObj->getComponent<Transform>()->setY(50.0);
-
-	myObj->getComponent<Transform>()->setScaleX(100.0);
-	myObj->getComponent<Transform>()->setScaleY(100.0);
-	Transform* trans = myObj->getComponent<Transform>();
+	myObj->transform->scalar.x = 100.0;
+	myObj->transform->scalar.y = 100.0;
 
 	while (!glfwWindowShouldClose(window))
 	{
-		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-		{
-			//trans->setX(trans->getX() - 0.25);
-			trans->translate(glm::vec3(-0.25, 0, 0));
-		}
-
-		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-		{
-			trans->setX(trans->getX() + 0.25);
-		}
-
-		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-		{
-			trans->setY(trans->getY() - 0.25);
-		}
-
-		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-		{
-			trans->setY(trans->getY() + 0.25);
-		}
-
-		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-		{
-			trans->setAngle(trans->getAngle() + 0.25);
-		}
-
-		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-		{
-			trans->setAngle(trans->getAngle() - 0.25);
-		}
-
+		testFunction(window, gom, myObj); // BAD EXAMPLE, JUST FOR TESTING
 		Input::getInstance().processBasicInput(WindowManager::getInstance().getWindow());
 		Renderer::setBackgroundColor(glm::vec4(0.2f, 0.3f, 0.3f, 1.0f));
 
@@ -71,3 +38,51 @@ int main()
 	return 0;
 }
 
+void testFunction(GLFWwindow* window, GameObjectManager* gom, GameObject* myObj)
+{
+	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+	{
+		if (myObj == nullptr)
+		{
+			myObj = gom->create();
+		}
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+	{
+		if (myObj != nullptr)
+		{
+			gom->destroy(myObj);
+		}
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+	{
+		myObj->transform->position.x -= 0.25;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+	{
+		myObj->transform->position.x += 0.25;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+		myObj->transform->position.y -= 0.25;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		myObj->transform->position.y += 0.25;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+	{
+		myObj->transform->angle += 0.25;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+	{
+		myObj->transform->angle -= 0.25;
+	}
+}

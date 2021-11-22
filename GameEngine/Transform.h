@@ -6,30 +6,15 @@
 
 class Transform : public Component
 {
-private:
+public:
 	glm::vec4 position;
 	glm::vec3 scalar;
 	float angle;
 
-public:
 	Transform();
-	Transform(const Transform& copy);
 	~Transform();
 
-	Transform& operator=(const Transform& rhs);
-
-	double getX() const;
-	double getY() const;
-	double getAngle() const;
-	double getScaleX() const;
-	double getScaleY() const;
-
-	void setX(double newX);
-	void setY(double newY);
-	void setAngle(double newAngle);
-	void setScaleX(double newScaleX);
-	void setScaleY(double newScaleY);
-
+	// keeping these for now just in case
 	void translate(glm::vec3 vector);
 	void rotate(float radians);
 	void scale(glm::vec3 scalar);

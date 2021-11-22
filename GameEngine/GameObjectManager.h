@@ -18,12 +18,12 @@ private:
 	std::vector<GameObject*> gameObjects;
 public:
 	GameObjectManager();
+	~GameObjectManager();
 
-	void create();
-	//void create(glm::vec2* size, glm::vec2* position);
+	GameObject* create();
 
 	void addObject(GameObject* toAdd);
-	void destroy(GameObject* gameObject);
+	void destroy(GameObject*& gameObject);
 
 	GameObject* find(const std::string& name);
 
@@ -32,8 +32,6 @@ public:
 	void update(float deltaTime) override;
 	void draw()                  override;
 	void unload()                override;
-
-
 };
 
 #endif

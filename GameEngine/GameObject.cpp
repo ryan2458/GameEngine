@@ -13,25 +13,25 @@ std::string GameObject::generateDefaultName()
 	return defaultName;
 }
 
-GameObject::GameObject() : BasedObject(generateDefaultName())
+GameObject::GameObject() : BasedObject(generateDefaultName()), transform(dynamic_cast<Transform*>(addComponent(new Transform())))
 {
 
 }
 
 GameObject::~GameObject()
 {
-
+	destroy();
 }
 
-void GameObject::addComponent(Component* component)
+Component* GameObject::addComponent(Component* component)
 {
 	components.push_back(component);
 	component->setParent(this);
+	return component;
 }
 
 void GameObject::removeComponent(Component* component)
 {
-	// TODO: CHECK W/ BAR TO SEE IF THIS IS HOW I FREE MEMORY
 	std::vector<Component*>::iterator it = std::find(components.begin(), components.end(), component);
 	delete component;
 	components.erase(it);
@@ -49,28 +49,49 @@ void GameObject::removeChild(GameObject* toRemove)
 
 void GameObject::load()
 {
+	for (Component* comp : components)
+	{
+		comp->load();
+	}
 }
 
 void GameObject::init()
 {
+	for (Component* comp : components)
+	{
+		comp->init();
+	}
 }
 
 void GameObject::update(float deltaTime)
 {
-	for (int i = 0; i < components.size(); ++i)
+	for (Component* comp : components)
 	{
-		components.at(i)->update(deltaTime);
+		comp->update(deltaTime);
 	}
 }
 
 void GameObject::draw()
 {
-	glm::vec2 size = glm::vec2(getComponent<Transform>()->getScaleX(), getComponent<Transform>()->getScaleY());
-	glm::vec2 position = glm::vec2(getComponent<Transform>()->getX(), getComponent<Transform>()->getY());
-	float angle = getComponent<Transform>()->getAngle();
+	glm::vec2 size = glm::vec2(transform->scalar.x, transform->scalar.y);
+	glm::vec2 position = glm::vec2(transform->position.x, transform->position.y);
+	float angle = transform->angle;
 	Renderer::getInstance().renderMesh(size, position, angle);
 }
 
 void GameObject::unload()
 {
+	for (Component* comp : components)
+	{
+		comp->unload();
+	}
+}
+
+void GameObject::destroy()
+{
+	unload();
+	while (!components.empty())
+	{
+		removeComponent(components.back());
+	}
 }

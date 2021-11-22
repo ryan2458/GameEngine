@@ -1,28 +1,37 @@
 #include "GameObjectManager.h"
 #include "GameObject.h"
+#include "Transform.h"
 
 GameObjectManager::GameObjectManager() : BasedObject("GameObjectManager")
 {
 }
 
-void GameObjectManager::create()
+GameObjectManager::~GameObjectManager()
 {
-	GameObject* gameObject = new GameObject();
-	gameObjects.push_back(gameObject);
+	while (!gameObjects.empty())
+	{
+		destroy(gameObjects.back());
+	}
 }
 
-// will remove later
-//void GameObjectManager::create(glm::vec2* size, glm::vec2* position)
-//{
-//	GameObject* gameObject = new GameObject(*size, *position);
-//	gameObjects.push_back(gameObject);
-//}
+GameObject* GameObjectManager::create()
+{
+	GameObject* gameObject = new GameObject();
+	gameObject->addComponent(new Transform());
+	gameObjects.push_back(gameObject);
 
-void GameObjectManager::destroy(GameObject* gameObject)
+	return gameObject;
+}
+
+// Ask Bar if gameObject is actually getting deleted here
+// Change code back to not setting gameObject to nullptr
+// Make it so gameObject is not a ref to a pointer
+void GameObjectManager::destroy(GameObject*& gameObject)
 {
 	std::vector<GameObject*>::iterator it = std::find(gameObjects.begin(), gameObjects.end(), gameObject);
 	delete gameObject;
-	gameObjects.erase(it);
+	gameObjects.erase(it); // erases the pointer, not the object
+	gameObject = nullptr;
 }
 
 GameObject* GameObjectManager::find(const std::string& name)

@@ -5,21 +5,29 @@
 #include <vector>
 
 class Component;
+class Transform;
 
 class GameObject : public BasedObject
 {
 private:
 	std::vector<Component*> components;
-
 	static std::string generateDefaultName();
+
+	// This should remain private, if you wish to destroy a GameObject
+	// Call destroy() in GameObjectManager
+	// Called in GameObject destructor
+	void destroy();
 public:
+
 	GameObject();
 	~GameObject() override;
+
+	Transform* const transform;
 
 	template <class T>
 	T* getComponent();
 
-	void addComponent(Component* component);
+	Component* addComponent(Component* component);
 	void removeComponent(Component* component);
 
 	void addChild(GameObject* toAdd);
@@ -30,6 +38,8 @@ public:
 	void update(float deltaTime) override;
 	void draw()                  override;
 	void unload()                override;
+
+	
 };
 
 #endif
