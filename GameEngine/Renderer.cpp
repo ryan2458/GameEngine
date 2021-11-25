@@ -2,6 +2,7 @@
 #include "Mesh.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "box2d/b2_body.h"
 
 Renderer::Renderer() : defaultTexture(Texture("awesomeface.png")), defaultShader(Shader("vertex.shader", "fragment.shader")),
 	defaultMesh(Mesh()) // initializing with mesh not needed, but added for style

@@ -2,10 +2,10 @@
 #define GAME_OBJECT_H
 
 #include "BasedObject.h"
+#include "Transform.h"
 #include <vector>
 
 class Component;
-class Transform;
 
 class GameObject : public BasedObject
 {
@@ -13,10 +13,12 @@ private:
 	std::vector<Component*> components;
 	static std::string generateDefaultName();
 
-	// This should remain private, if you wish to destroy a GameObject
+protected:
+	// This should remain protected, if you wish to destroy a GameObject
+	// outside of the context of itself
 	// Call destroy() in GameObjectManager
-	// Called in GameObject destructor
 	void destroy();
+
 public:
 
 	GameObject();
