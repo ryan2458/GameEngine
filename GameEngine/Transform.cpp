@@ -6,7 +6,7 @@
 
 Transform::Transform() : Component("Transform"), position(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f)), 
 	scalar(glm::vec3(50.0f, 50.0f, 1.0f)), 
-	angle(90.0f)
+	angle(0.0f)
 {
 	
 }

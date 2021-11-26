@@ -18,7 +18,56 @@ void Input::processBasicInput(GLFWwindow* window)
 
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 	{
-		// set state that's in a different header
+		InputState::KeyPressed::left = true;
+	}
+	else
+	{
+		InputState::KeyPressed::left = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::right = true;
+	}
+	else
+	{
+		InputState::KeyPressed::right = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::up = true;
+	}
+	else
+	{
+		InputState::KeyPressed::up = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::down = true;
+	}
+	else
+	{
+		InputState::KeyPressed::down = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::e = true;
+	}
+	else
+	{
+		InputState::KeyPressed::e = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::q = true;
+	}
+	else
+	{
+		InputState::KeyPressed::q = false;
 	}
 }
 

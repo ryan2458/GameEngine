@@ -70,6 +70,10 @@ void GameObjectManager::load()
 
 void GameObjectManager::init()
 {
+	for (GameObject* go : gameObjects)
+	{
+		go->init();
+	}
 }
 
 void GameObjectManager::update(float deltaTime)
