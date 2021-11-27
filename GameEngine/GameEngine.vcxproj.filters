@@ -78,6 +78,9 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Core Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -131,6 +134,9 @@
     <ClInclude Include="Mesh.h">
       <Filter>Core Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.shader">
@@ -152,5 +158,8 @@
     <Text Include="README.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="space.mp3" />
   </ItemGroup>
 </Project>

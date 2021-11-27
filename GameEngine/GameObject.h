@@ -3,6 +3,7 @@
 
 #include "BasedObject.h"
 #include "Transform.h"
+#include "Sprite.h"
 #include <vector>
 
 class Component;
@@ -25,6 +26,7 @@ public:
 	~GameObject() override;
 
 	Transform* const transform;
+	Sprite* const sprite;
 
 	template <class T>
 	T* getComponent();

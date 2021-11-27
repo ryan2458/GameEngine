@@ -13,7 +13,8 @@ std::string GameObject::generateDefaultName()
 	return defaultName;
 }
 
-GameObject::GameObject() : BasedObject(generateDefaultName()), transform(dynamic_cast<Transform*>(addComponent(new Transform())))
+GameObject::GameObject() : BasedObject(generateDefaultName()), transform(dynamic_cast<Transform*>(addComponent(new Transform()))),
+	sprite(dynamic_cast<Sprite*>(addComponent(new Sprite())))	
 {
 
 }
@@ -76,7 +77,7 @@ void GameObject::draw()
 	glm::vec2 size = glm::vec2(transform->scalar.x, transform->scalar.y);
 	glm::vec2 position = glm::vec2(transform->position.x, transform->position.y);
 	float angle = transform->angle;
-	Renderer::getInstance().renderMesh(size, position, angle);
+	Renderer::getInstance().render(size, position, angle, sprite);
 }
 
 void GameObject::unload()

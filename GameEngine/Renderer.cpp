@@ -1,8 +1,4 @@
 #include "Renderer.h"
-#include "Mesh.h"
-#include "Shader.h"
-#include "Texture.h"
-#include "box2d/b2_body.h"
 
 Renderer::Renderer() : defaultTexture(Texture("awesomeface.png")), defaultShader(Shader("vertex.shader", "fragment.shader")),
 	defaultMesh(Mesh()) // initializing with mesh not needed, but added for style
@@ -11,26 +7,13 @@ Renderer::Renderer() : defaultTexture(Texture("awesomeface.png")), defaultShader
 	setProjectionMatrix(800.0f, 600.0f);
 }
 
+void Renderer::renderEngine(GLFWwindow* window)
+{
+}
+
 void Renderer::setProjectionMatrix(float width, float height)
 {
 	projection = glm::ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
-}
-
-void Renderer::render(GLFWwindow* window)
-{
-	
-}
-
-void Renderer::renderTextures()
-{
-	GLint textureUnits;
-	glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &textureUnits);
-
-	for (int i = 0; i < textureUnits; ++i)
-	{
-		glActiveTexture(GL_TEXTURE0 + i);
-		glBindTexture(GL_TEXTURE_2D, GL_TEXTURE0 + i);
-	}
 }
 
 void Renderer::setBackgroundColor(const glm::vec4& color)
@@ -39,7 +22,7 @@ void Renderer::setBackgroundColor(const glm::vec4& color)
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::renderMesh(const glm::vec2& size, const glm::vec2& position,
+void Renderer::render(const glm::vec2& size, const glm::vec2& position,
 	float angle, Mesh* mesh, Texture* texture, Shader* shader, const glm::vec4& tint)
 {
 	if (mesh == nullptr)
@@ -88,6 +71,12 @@ void Renderer::renderMesh(const glm::vec2& size, const glm::vec2& position,
 	{
 		texture->unbind();
 	}
+}
+
+void Renderer::render(const glm::vec2& size, const glm::vec2& position, float angle, 
+	Sprite* sprite, Shader* shader, const glm::vec4& tint)
+{
+	render(size, position, angle, sprite->getMesh(), sprite->getTexture(), shader, tint);
 }
 
 

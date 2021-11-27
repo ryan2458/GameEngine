@@ -5,7 +5,7 @@
 
 void Engine::run()
 {
-	Renderer::getInstance().render(WindowManager::getInstance().getWindow());
+	Renderer::getInstance().renderEngine(WindowManager::getInstance().getWindow());
 }
 
 float Engine::getDeltaTime()
