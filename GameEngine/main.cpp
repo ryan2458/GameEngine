@@ -37,7 +37,7 @@ int main()
 	{
 		changeSong();
 		Input::getInstance().processBasicInput(window);
-		Renderer::setBackgroundColor(glm::vec4(0.1f, 0.3f, 0.3f, 1.0f));
+		Renderer::setBackgroundColor(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 
 		gom->update(engine->getDeltaTime());
 		gom->draw();

@@ -23,12 +23,12 @@ void Movement::update(float deltaTime)
 {
 	if (InputState::KeyPressed::left)
 	{
-		mTransform->angle -= mRotationSpeed;
+		mTransform->angle -= mRotationSpeed * deltaTime;
 	}
 
 	if (InputState::KeyPressed::right)
 	{
-		mTransform->angle += mRotationSpeed;
+		mTransform->angle += mRotationSpeed * deltaTime;
 	}
 
 	if (InputState::KeyPressed::up)

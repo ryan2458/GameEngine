@@ -13,7 +13,7 @@ private:
 	float mRotationSpeed;
 public:
 	
-	Movement(float speed = 5.00f, float rotationSpeed = 0.05f);
+	Movement(float speed = 5.00f, float rotationSpeed = 100.00f);
 	~Movement();
 
 	void init() override;
