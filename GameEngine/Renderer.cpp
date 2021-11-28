@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer() : defaultTexture(Texture("awesomeface.png")), defaultShader(Shader("vertex.shader", "fragment.shader")),
+Renderer::Renderer() : defaultTexture(Texture("square.png")), defaultShader(Shader("vertex.shader", "fragment.shader")),
 	defaultMesh(Mesh()) // initializing with mesh not needed, but added for style
 {
 	std::cout << "LOG: New Renderer Instantiated." << std::endl;
