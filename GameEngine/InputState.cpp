@@ -11,5 +11,10 @@ namespace InputState
 
         bool e = false;
         bool q = false;
+
+        bool key_1 = false;
+        bool key_2 = false;
+        bool key_3 = false;
+        bool key_4 = false;
 	};
 };

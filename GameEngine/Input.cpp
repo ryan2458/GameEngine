@@ -69,5 +69,41 @@ void Input::processBasicInput(GLFWwindow* window)
 	{
 		InputState::KeyPressed::q = false;
 	}
+
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::key_1 = true;
+	}
+	else
+	{
+		InputState::KeyPressed::key_1 = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::key_2 = true;
+	}
+	else
+	{
+		InputState::KeyPressed::key_2 = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::key_3 = true;
+	}
+	else
+	{
+		InputState::KeyPressed::key_3 = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::key_4 = true;
+	}
+	else
+	{
+		InputState::KeyPressed::key_4 = false;
+	}
 }
 

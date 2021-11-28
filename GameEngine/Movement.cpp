@@ -3,7 +3,8 @@
 #include <iostream>
 # define M_PI 3.14159265358979323846
 
-Movement::Movement(float speed) : Component("Movement"), mBody(nullptr), mSpeed(speed)
+Movement::Movement(float speed, float rotationSpeed) : Component("Movement"), mBody(nullptr), mTransform(nullptr), mSpeed(speed), 
+	mRotationSpeed(rotationSpeed)
 {
 }
 
@@ -22,34 +23,26 @@ void Movement::update(float deltaTime)
 {
 	if (InputState::KeyPressed::left)
 	{
-		mTransform->angle -= 0.25f;
+		mTransform->angle -= mRotationSpeed;
 	}
 
 	if (InputState::KeyPressed::right)
 	{
-		mTransform->angle += 0.25f;
+		mTransform->angle += mRotationSpeed;
 	}
 
 	if (InputState::KeyPressed::up)
 	{
-		glm::vec2 velocity = mBody->velocity;
 		float radians = (mTransform->angle * (double)(M_PI / 180.0));
-
-		velocity.x += mSpeed * (cos(radians) * (double)(180.0 / M_PI));
-		velocity.y += mSpeed * (sin(radians) * (double)(180.0 / M_PI)); 
-
-		mBody->velocity = velocity;
+		mBody->velocity.x += (cos(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
+		mBody->velocity.y += (sin(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
 	}
 
 	if (InputState::KeyPressed::down)
 	{
-		glm::vec2 velocity = mBody->velocity;
 		float radians = (mTransform->angle * (double)(M_PI / 180.0));
-
-		velocity.x -= mSpeed * (cos(radians) * (double)(180.0 / M_PI));
-		velocity.y -= mSpeed * (sin(radians) * (double)(180.0 / M_PI));
-
-		mBody->velocity = velocity;
+		mBody->velocity.x -= (cos(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
+		mBody->velocity.y -= (sin(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
 	}
 }
 

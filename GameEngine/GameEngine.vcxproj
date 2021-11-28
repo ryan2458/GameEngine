@@ -188,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="awesomeface.png" />
+    <Image Include="spaceship.png" />
     <Image Include="square.png" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +196,8 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="space.mp3" />
+    <Media Include="splitters.mp3" />
+    <Media Include="yellow.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,9 +10,10 @@ private:
 	Body* mBody;
 	Transform* mTransform;
 	float mSpeed;
+	float mRotationSpeed;
 public:
 	
-	Movement(float speed = 0.25f);
+	Movement(float speed = 5.00f, float rotationSpeed = 0.05f);
 	~Movement();
 
 	void init() override;

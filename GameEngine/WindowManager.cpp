@@ -1,13 +1,10 @@
 #include "WindowManager.h"
 #include "callbacks.h"
 
-#include "irrklang/irrKlang.h"
-irrklang::ISoundEngine* se = irrklang::createIrrKlangDevice();
+
 
 WindowManager::WindowManager()
 {
-	se->play2D("space.mp3", true);
-	//se->play2D("lava.mp3", true);
 	std::cout << "LOG: New WindowManager Instantiated." << std::endl;
 	initGLFW();
 	mainWindow = createWindow();
