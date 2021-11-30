@@ -153,6 +153,9 @@
     <Image Include="square.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="spaceship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">
@@ -161,5 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="space.mp3" />
+    <Media Include="splitters.mp3" />
+    <Media Include="yellow.mp3" />
   </ItemGroup>
 </Project>

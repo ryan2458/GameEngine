@@ -2,7 +2,6 @@
 #define TRANSFORM_H
 
 #include "Component.h"
-#include "box2d/b2_body.h"
 #include <glm/glm.hpp>
 
 class Transform : public Component
