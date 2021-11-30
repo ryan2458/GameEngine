@@ -1,6 +1,6 @@
 Team Members:
 Ryan Aloof
-Nicholas Girth
+Nicholas Gi(e)rth
 Jordan BROOKS
 Anne Tansengco
 
