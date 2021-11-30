@@ -81,6 +81,9 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AsteroidMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -137,6 +140,9 @@
     <ClInclude Include="Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AsteroidMovement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.shader">
@@ -153,6 +159,9 @@
     <Image Include="square.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="spaceship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">
@@ -161,5 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="space.mp3" />
+    <Media Include="splitters.mp3" />
+    <Media Include="yellow.mp3" />
   </ItemGroup>
 </Project>

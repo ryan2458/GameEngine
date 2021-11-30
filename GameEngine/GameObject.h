@@ -23,6 +23,7 @@ protected:
 public:
 
 	GameObject();
+	GameObject(const std::string& name);
 	~GameObject() override;
 
 	Transform* const transform;
@@ -42,8 +43,6 @@ public:
 	void update(float deltaTime) override;
 	void draw()                  override;
 	void unload()                override;
-
-	
 };
 
 #endif

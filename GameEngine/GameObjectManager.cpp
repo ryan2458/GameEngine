@@ -28,6 +28,12 @@ GameObject* GameObjectManager::create()
 	return createGameObject();
 }
 
+//GameObject* GameObjectManager::create()
+//{
+//	GameObject* gameObject = createGameObject();
+//	//gameObject->setName(name);
+//}
+
 GameObject* GameObjectManager::create(glm::vec3 location)
 {
 	GameObject* gameObject = createGameObject();

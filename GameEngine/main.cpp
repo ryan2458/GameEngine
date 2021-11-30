@@ -7,6 +7,7 @@
 #include "Component.h"
 #include "Input.h"
 #include "Movement.h"
+#include "AsteroidMovement.h"
 
 #include "irrklang/irrKlang.h"
 irrklang::ISoundEngine* se = irrklang::createIrrKlangDevice();
@@ -18,18 +19,33 @@ int main()
 	GLFWwindow* window = WindowManager::getInstance().getWindow();
 	Engine* engine = &Engine::getInstance();
 
-	se->play2D("splitters.mp3");
+	//se->play2D("splitters.mp3");
 
 	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
 	gom->create();
-
+	
 	GameObject* myObj = gom->find("GameObject0");
 	myObj->addComponent(new Body());
 	myObj->addComponent(new Movement());
 	myObj->sprite->swapTexture("spaceship.png");
 
-	myObj->transform->scalar.x = 100.0;
-	myObj->transform->scalar.y = 100.0;
+
+
+	gom->create();
+	GameObject* asteroid = gom->find("GameObject1");
+	asteroid->addComponent(new Body());
+	asteroid->addComponent(new AsteroidMovement());
+	asteroid->sprite->swapTexture("awesomeface.png");
+
+
+
+
+
+
+
+
+
+
 
 	gom->init();
 

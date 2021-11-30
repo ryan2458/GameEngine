@@ -23,7 +23,12 @@ void Movement::update(float deltaTime)
 {
 	if (InputState::KeyPressed::left)
 	{
+		// messes up matrix
 		mTransform->angle -= mRotationSpeed * deltaTime;
+		//float x_rotation = mTransform->angle - (mRotationSpeed * deltaTime);
+		//mTransform->rotate(x_rotation);
+		
+		//glm::rotate(mTransform->position., mTransform->angle, glm::vec3(x_rotation, 0.0f, 0.0f));
 	}
 
 	if (InputState::KeyPressed::right)
@@ -33,16 +38,23 @@ void Movement::update(float deltaTime)
 
 	if (InputState::KeyPressed::up)
 	{
-		float radians = (mTransform->angle * (double)(M_PI / 180.0));
-		mBody->velocity.x += (cos(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
-		mBody->velocity.y += (sin(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
+		float x = glm::cos(glm::radians(mTransform->angle)) * mSpeed * deltaTime;
+		float y = glm::sin(glm::radians(mTransform->angle)) * mSpeed * deltaTime;
+		//mTransform->translate(glm::vec3(x, y, 0.0f));
+
+		mBody->velocity.x = x;
+		mBody->velocity.y = y;
+
+		//float radians = (mTransform->angle * (double)(M_PI / 180.0));
+		//mBody->velocity.x += cos(radians) * mSpeed * deltaTime;
+		//mBody->velocity.y += sin(radians) * mSpeed * deltaTime;
 	}
 
 	if (InputState::KeyPressed::down)
 	{
-		float radians = (mTransform->angle * (double)(M_PI / 180.0));
-		mBody->velocity.x -= (cos(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
-		mBody->velocity.y -= (sin(radians) * (double)(180.0 / M_PI)) * mSpeed * deltaTime;
+		float radians = glm::radians(mTransform->angle);
+		mBody->velocity.x -= cos(radians) * mSpeed * deltaTime;
+		mBody->velocity.y -= sin(radians) * mSpeed * deltaTime;
 	}
 }
 

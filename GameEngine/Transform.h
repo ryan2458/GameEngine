@@ -2,7 +2,6 @@
 #define TRANSFORM_H
 
 #include "Component.h"
-#include "box2d/b2_body.h"
 #include <glm/glm.hpp>
 
 class Transform : public Component
@@ -17,7 +16,7 @@ public:
 
 	// keeping these for now just in case
 	void translate(glm::vec3 vector);
-	void rotate(float radians);
+	void rotate(float angle);
 	void scale(glm::vec3 scalar);
 
 	Component* clone() override;

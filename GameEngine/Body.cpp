@@ -1,7 +1,7 @@
 #include "Body.h"
 
-Body::Body(glm::vec2 pos, glm::vec2 accel) : Component("ShipBody"), 
-	position(pos), velocity(glm::vec2(0.0f, 0.0f)), acceleration(accel)
+Body::Body(glm::vec3 pos, glm::vec3 accel) : Component("ShipBody"), 
+	position(pos), velocity(glm::vec3(0.0f, 0.0f, 0.0f)), acceleration(accel)
 {
 
 }
@@ -19,8 +19,11 @@ void Body::update(float deltaTime)
 
 	position += velocity * deltaTime;
 
-	getGameObject()->transform->position.x = position.x;
-	getGameObject()->transform->position.y = position.y;
+
+	getGameObject()->transform->translate(position);
+
+	//getGameObject()->transform->position.x = position.x;
+	//getGameObject()->transform->position.y = position.y;
 }
 
 Component* Body::clone()

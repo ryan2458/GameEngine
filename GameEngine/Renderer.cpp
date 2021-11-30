@@ -63,7 +63,7 @@ void Renderer::render(const glm::vec2& size, const glm::vec2& position,
 	}
 
 	mesh->bind();
-
+	
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	mesh->unbind();
 
