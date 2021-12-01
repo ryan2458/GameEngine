@@ -8,6 +8,8 @@
 #include "Input.h"
 #include "Movement.h"
 #include "AsteroidMovement.h"
+#include <cstdlib>
+#include <ctime>
 
 #include "irrklang/irrKlang.h"
 irrklang::ISoundEngine* se = irrklang::createIrrKlangDevice();
@@ -16,6 +18,7 @@ void changeSong();
 
 int main()
 {
+	srand((unsigned int)time(NULL));
 	GLFWwindow* window = WindowManager::getInstance().getWindow();
 	Engine* engine = &Engine::getInstance();
 

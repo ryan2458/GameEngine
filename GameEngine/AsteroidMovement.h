@@ -5,11 +5,16 @@
 
 class AsteroidMovement : public Component 
 {
+private:
+	float mRotationTimer;
+	float mRotationAngle;
+	float mForwardSpeed;
 public:
 	AsteroidMovement();
 	~AsteroidMovement();
 
 	void update(float deltaTime) override;
+	inline float generateRandomAngle();
 
 	inline Component* clone() override { return nullptr; }
 };
