@@ -30,6 +30,13 @@ GameObject* GameObjectManager::create()
 	return createGameObject();
 }
 
+GameObject* GameObjectManager::create(const std::string& name)
+{
+	GameObject* gameObject = createGameObject();
+	gameObject->setName(name);
+	return gameObject;
+}
+
 //GameObject* GameObjectManager::create()
 //{
 //	GameObject* gameObject = createGameObject();
@@ -41,6 +48,14 @@ GameObject* GameObjectManager::create(glm::vec3 location)
 	GameObject* gameObject = createGameObject();
 	gameObject->transform->trans(location);
 
+	return gameObject;
+}
+
+GameObject* GameObjectManager::create(glm::vec3 location, const std::string& name)
+{
+	GameObject* gameObject = createGameObject();
+	gameObject->transform->trans(location);
+	gameObject->setName(name);
 	return gameObject;
 }
 

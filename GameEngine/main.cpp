@@ -16,6 +16,8 @@
 irrklang::ISoundEngine* se = irrklang::createIrrKlangDevice();
 
 void changeSong();
+void createAsteroids(GameObjectManager* gom, int count, int maxSize);
+void createShip(GameObjectManager* gom, int size);
 
 int main()
 {
@@ -26,52 +28,9 @@ int main()
 	//se->play2D("splitters.mp3");
 
 	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
-	gom->create();
 	
-	GameObject* myObj = gom->find("GameObject0");
-	myObj->addComponent(new Body());
-	myObj->addComponent(new Movement());
-	myObj->addComponent(new Collider(glm::vec2(myObj->transform->position.x, myObj->transform->position.y), 25.0f));
-	myObj->sprite->swapTexture("spaceship.png");
-	//myObj->transform->trans(glm::vec3(0.0f, 0.0f, 0.0f));
-	myObj->setName("Ship");
-	myObj->transform->trans(glm::vec3(400.0f, 300.0f, 0.0f));
-
-	gom->create();
-	GameObject* asteroid = gom->find("GameObject1");
-	asteroid->addComponent(new Body());
-	asteroid->addComponent(new AsteroidMovement());
-	asteroid->sprite->swapTexture("awesomeface.png");
-	asteroid->addComponent(new Collider(glm::vec2(asteroid->transform->position.x, asteroid->transform->position.y), 25.0f));
-	asteroid->setName("Asteroid");
-
-	gom->create();
-	GameObject* asteroid2 = gom->find("GameObject2");
-	asteroid2->addComponent(new Body());
-	asteroid2->addComponent(new AsteroidMovement());
-	asteroid2->sprite->swapTexture("awesomeface.png");
-	asteroid2->addComponent(new Collider(glm::vec2(asteroid2->transform->position.x, asteroid2->transform->position.y), 25.0f));
-	asteroid2->setName("Asteroid");
-
-
-	gom->create();
-	GameObject* asteroid3 = gom->find("GameObject3");
-	asteroid3->addComponent(new Body());
-	asteroid3->addComponent(new AsteroidMovement());
-	asteroid3->sprite->swapTexture("awesomeface.png");
-	asteroid3->addComponent(new Collider(glm::vec2(asteroid3->transform->position.x, asteroid3->transform->position.y), 25.0f));
-	asteroid3->setName("Asteroid");
-
-
-	gom->create();
-	GameObject* asteroid4 = gom->find("GameObject4");
-	asteroid4->addComponent(new Body());
-	asteroid4->addComponent(new AsteroidMovement());
-	asteroid4->sprite->swapTexture("awesomeface.png");
-	asteroid4->addComponent(new Collider(glm::vec2(asteroid4->transform->position.x, asteroid4->transform->position.y), 25.0f));
-	asteroid4->setName("Asteroid");
-
-
+	createShip(gom, 50.0f);
+	createAsteroids(gom, 25, 100);
 
 	gom->init();
 
@@ -89,6 +48,35 @@ int main()
 
 	glfwTerminate();
 	return 0;
+}
+
+void createAsteroids(GameObjectManager* gom, int count, int maxSize)
+{
+	for (int i = 0; i < count; ++i)
+	{
+		float randSize = (float)(rand() % maxSize) + 50;
+		GameObject* asteroid = gom->create("Asteroid");
+		asteroid->transform->scale(glm::vec3(randSize, randSize, 0.0f));
+		asteroid->addComponent(new Body());
+		asteroid->addComponent(new AsteroidMovement());
+		asteroid->sprite->swapTexture("awesomeface.png");
+		asteroid->addComponent(new Collider(glm::vec2(asteroid->transform->position.x, asteroid->transform->position.y), randSize / 2.0f));
+	}
+}
+
+void createShip(GameObjectManager* gom, int size)
+{
+	int width, height;
+	glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
+
+	GameObject* ship = gom->create("ship");
+	ship->transform->scale(glm::vec3(size, size, 0.0f));
+	ship->transform->trans(glm::vec3((float)width / 2.0f, (float)height / 2.0f, 0.0f));
+	ship->addComponent(new Body());
+	ship->addComponent(new Movement());
+	ship->addComponent(new Collider(glm::vec2(ship->transform->position.x, ship->transform->position.y), size / 2.0f));
+	ship->sprite->swapTexture("spaceship.png");
+	ship->setName("Ship");
 }
 
 void changeSong()

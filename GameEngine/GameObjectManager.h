@@ -23,7 +23,9 @@ public:
 	~GameObjectManager();
 
 	GameObject* create();
+	GameObject* create(const std::string& name);
 	GameObject* create(glm::vec3 location);
+	GameObject* create(glm::vec3 location, const std::string& name);
 
 	void addObject(GameObject* toAdd);
 	void destroy(GameObject*& gameObject);

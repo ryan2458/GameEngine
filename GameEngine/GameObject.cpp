@@ -4,7 +4,6 @@
 #include "Renderer.h"
 #include "Transform.h"
 
-bool isVisible(glm::vec3& position, int width, int height);
 void checkPosition(Transform& transform);
 
 std::string GameObject::generateDefaultName()
@@ -19,6 +18,12 @@ std::string GameObject::generateDefaultName()
 
 GameObject::GameObject() : BasedObject(generateDefaultName()), transform(dynamic_cast<Transform*>(addComponent(new Transform()))),
 	sprite(dynamic_cast<Sprite*>(addComponent(new Sprite())))	
+{
+
+}
+
+GameObject::GameObject(const std::string& name) : BasedObject(name), transform(dynamic_cast<Transform*>(addComponent(new Transform()))),
+	sprite(dynamic_cast<Sprite*>(addComponent(new Sprite())))
 {
 
 }
@@ -89,9 +94,6 @@ void GameObject::draw()
 
 void checkPosition(Transform& transform)
 {
-	//static bool wrappingX = false;
-	//static bool wrappingY = false;
-
 	int width, height;
     glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
 
@@ -114,73 +116,6 @@ void checkPosition(Transform& transform)
 	{
 		transform.trans(glm::vec3(0.0f, -(float)height, 0.0f));
 	}
-
-
-	/*if (isVisible(transform.position, width, height))
-	{
-		wrappingX = false;
-		wrappingY = false;
-		return;
-	}
-
-	if (wrappingX && wrappingY)
-	{
-		return;
-	}
-
-	if (!wrappingX && transform.position.x < 0.0f)
-	{
-		transform.trans(glm::vec3((float)width, 0.0f, 0.0f));
-		wrappingX = false;
-	}
-
-	if (!wrappingX && transform.position.x > (float)width)
-	{
-		transform.trans(glm::vec3(-(float)width, 0.0f, 0.0f));
-		wrappingX = false;
-	}
-
-	if (!wrappingY && transform.position.y < 0.0f)
-	{
-		transform.trans(glm::vec3((float)height, 0.0f, 0.0f));
-		wrappingY = false;
-	}
-
-	if (!wrappingY && transform.position.x > (float)height)
-	{
-		transform.trans(glm::vec3(-(float)height, 0.0f, 0.0f));
-		wrappingY = false;
-	}*/
-}
-
-//void checkPosition(Transform* transform)
-//{
-//    int width, height;
-//    glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
-//    
-//    if (transform->position.x < -50.0f)
-//    {
-//    	transform->translate(glm::vec3((float)width, transform->position.y, 0.0f));
-//    }
-//    else if (transform->position.x > (float)width + 50.0f)
-//    {
-//    	transform->translate(glm::vec3(0.0f, transform->position.y, 0.0f));
-//    }
-//    else if (transform->position.y < -50.0f)
-//    {
-//    	transform->translate(glm::vec3(transform->position.x, (float)height, 0.0f));
-//    }
-//    else if (transform->position.y > (float)height + 50.0f)
-//    {
-//    	int x = transform->position.x;
-//    	//transform->translate(glm::vec3(0.0f, 0.0f, 0.0f));
-//    	transform->translate(glm::vec3(x, 0.0f, 0.0f));
-//    }
-//}
-//
-bool isVisible(glm::vec3& position, int width, int height)
-{
-	return (position.x > 0 && position.x < width) && (position.y > 0 && position.y < height);
 }
 
 void GameObject::unload()
