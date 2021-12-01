@@ -4,8 +4,8 @@
 #include "Renderer.h"
 #include "Transform.h"
 
-bool isVisible(glm::vec4& position, int width, int height);
-void checkPosition(Transform* transform);
+bool isVisible(glm::vec3& position, int width, int height);
+void checkPosition(Transform& transform);
 
 std::string GameObject::generateDefaultName()
 {
@@ -78,39 +78,107 @@ void GameObject::update(float deltaTime)
 
 void GameObject::draw()
 {
-	checkPosition(transform);
-	glm::vec2 size = glm::vec2(transform->scalar.x, transform->scalar.y);
-	glm::vec2 position = glm::vec2(transform->position.x, transform->position.y);
-	float angle = transform->angle;
-	Renderer::getInstance().render(size, position, angle, sprite);
+	checkPosition(*transform);
+	Renderer::getInstance().render(*transform, *sprite);
+	//checkPosition(transform);
+	//glm::vec2 size = glm::vec2(transform->scalar.x, transform->scalar.y);
+	//glm::vec2 position = glm::vec2(transform->position.x, transform->position.y);
+	//float angle = transform->angle;
+	//Renderer::getInstance().render(size, position, angle, sprite);
 }
 
-void checkPosition(Transform* transform)
+void checkPosition(Transform& transform)
 {
-	int width, height;
-	glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
+	//static bool wrappingX = false;
+	//static bool wrappingY = false;
 
-	if (transform->position.x < -50.0f)
+	int width, height;
+    glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
+
+	if (transform.position.x < 0.0f)
 	{
-		transform->translate(glm::vec3((float)width, transform->position.y, 0.0f));
+		transform.trans(glm::vec3((float)width, 0.0f, 0.0f));
 	}
-	else if (transform->position.x > (float)width + 50.0f)
+
+	if (transform.position.x > (float)width)
 	{
-		transform->translate(glm::vec3(0.0f, transform->position.y, 0.0f));
+		transform.trans(glm::vec3(-(float)width, 0.0f, 0.0f));
 	}
-	else if (transform->position.y < -50.0f)
+
+	if (transform.position.y < 0.0f)
 	{
-		transform->translate(glm::vec3(transform->position.x, (float)height, 0.0f));
+		transform.trans(glm::vec3(0.0f, (float)height, 0.0f));
 	}
-	else if (transform->position.y > (float)height + 50.0f)
+
+	if (transform.position.y > (float)height)
 	{
-		int x = transform->position.x;
-		//transform->translate(glm::vec3(0.0f, 0.0f, 0.0f));
-		transform->translate(glm::vec3(x, 0.0f, 0.0f));
+		transform.trans(glm::vec3(0.0f, -(float)height, 0.0f));
 	}
+
+
+	/*if (isVisible(transform.position, width, height))
+	{
+		wrappingX = false;
+		wrappingY = false;
+		return;
+	}
+
+	if (wrappingX && wrappingY)
+	{
+		return;
+	}
+
+	if (!wrappingX && transform.position.x < 0.0f)
+	{
+		transform.trans(glm::vec3((float)width, 0.0f, 0.0f));
+		wrappingX = false;
+	}
+
+	if (!wrappingX && transform.position.x > (float)width)
+	{
+		transform.trans(glm::vec3(-(float)width, 0.0f, 0.0f));
+		wrappingX = false;
+	}
+
+	if (!wrappingY && transform.position.y < 0.0f)
+	{
+		transform.trans(glm::vec3((float)height, 0.0f, 0.0f));
+		wrappingY = false;
+	}
+
+	if (!wrappingY && transform.position.x > (float)height)
+	{
+		transform.trans(glm::vec3(-(float)height, 0.0f, 0.0f));
+		wrappingY = false;
+	}*/
 }
 
-bool isVisible(glm::vec4& position, int width, int height)
+//void checkPosition(Transform* transform)
+//{
+//    int width, height;
+//    glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
+//    
+//    if (transform->position.x < -50.0f)
+//    {
+//    	transform->translate(glm::vec3((float)width, transform->position.y, 0.0f));
+//    }
+//    else if (transform->position.x > (float)width + 50.0f)
+//    {
+//    	transform->translate(glm::vec3(0.0f, transform->position.y, 0.0f));
+//    }
+//    else if (transform->position.y < -50.0f)
+//    {
+//    	transform->translate(glm::vec3(transform->position.x, (float)height, 0.0f));
+//    }
+//    else if (transform->position.y > (float)height + 50.0f)
+//    {
+//    	int x = transform->position.x;
+//    	//transform->translate(glm::vec3(0.0f, 0.0f, 0.0f));
+//    	transform->translate(glm::vec3(x, 0.0f, 0.0f));
+//    }
+//}
+//
+bool isVisible(glm::vec3& position, int width, int height)
 {
 	return (position.x > 0 && position.x < width) && (position.y > 0 && position.y < height);
 }

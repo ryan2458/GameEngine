@@ -3,6 +3,7 @@
 
 #include "Shader.h"
 #include "Sprite.h"
+#include "Transform.h"
 
 class Renderer {
 private:
@@ -29,6 +30,17 @@ public:
 	void setProjectionMatrix(float width, float height);
 
 	static void setBackgroundColor(const glm::vec4& color);
+
+	static void render(Transform& transform, Sprite& sprite, 
+		Shader* shader = nullptr, 
+		const glm::vec4& tint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+
+	static void render(Transform& transform, 
+		Mesh* mesh = nullptr, 
+		Texture* texture = nullptr, 
+		Shader* shader = nullptr, 
+		const glm::vec4& tint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+
 	static void render(const glm::vec2& size = glm::vec2(10.0f, 10.0f),
 		const glm::vec2& position = glm::vec2(0.0f, 0.0f), 
 		float angle = 90.0f,

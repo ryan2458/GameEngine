@@ -28,7 +28,8 @@ int main()
 	myObj->addComponent(new Body());
 	myObj->addComponent(new Movement());
 	myObj->sprite->swapTexture("spaceship.png");
-
+	//myObj->transform->trans(glm::vec3(0.0f, 0.0f, 0.0f));
+	myObj->transform->scale(glm::vec3(50.0f, 50.0f, 0.0f));
 
 
 	gom->create();

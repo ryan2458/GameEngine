@@ -37,10 +37,7 @@ GameObject* GameObjectManager::create()
 GameObject* GameObjectManager::create(glm::vec3 location)
 {
 	GameObject* gameObject = createGameObject();
-	gameObject->transform->position.x = location.x;
-	gameObject->transform->position.y = location.y;
-	gameObject->transform->position.z = location.z;
-	gameObject->transform->position.w = 1.0f;
+	gameObject->transform->trans(location);
 
 	return gameObject;
 }

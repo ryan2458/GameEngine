@@ -20,7 +20,8 @@ void Body::update(float deltaTime)
 	position += velocity * deltaTime;
 
 
-	getGameObject()->transform->translate(position);
+	//getGameObject()->transform->translate(position);
+	getGameObject()->transform->trans(position);
 
 	//getGameObject()->transform->position.x = position.x;
 	//getGameObject()->transform->position.y = position.y;

@@ -10,6 +10,8 @@ class Body : public Component
 private:
 	glm::vec3 position;
 	glm::vec3 acceleration;
+	float mass;
+	float drag;
 public:
 	glm::vec3 velocity;
 
