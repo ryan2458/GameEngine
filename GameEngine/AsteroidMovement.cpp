@@ -1,4 +1,5 @@
 #include "AsteroidMovement.h"
+#include "GameObject.h"
 #include "Body.h"
 #include <cstdlib>
 

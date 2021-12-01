@@ -28,6 +28,8 @@ public:
 	void addObject(GameObject* toAdd);
 	void destroy(GameObject*& gameObject);
 
+	void checkCollisions();
+
 	GameObject* find(const std::string& name);
 
 	void load()                  override;

@@ -3,6 +3,7 @@
 
 #include "Body.h"
 #include "InputState.h"
+#include "Transform.h"
 
 class Movement : public Component
 {

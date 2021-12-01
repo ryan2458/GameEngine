@@ -1,9 +1,9 @@
 #ifndef BODY_H
 #define BODY_H
 
-#include "GameObject.h"
 #include "Component.h"
-#include "Transform.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class Body : public Component
 {

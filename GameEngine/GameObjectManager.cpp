@@ -1,6 +1,8 @@
 #include "GameObjectManager.h"
-#include "GameObject.h"
-#include "Transform.h"
+#include "Collider.h"
+#include <iostream>
+
+bool IsPointInCircle(float xa, float ya, float xc, float yc, float r);
 
 GameObject* GameObjectManager::createGameObject()
 {
@@ -53,6 +55,37 @@ void GameObjectManager::destroy(GameObject*& gameObject)
 	gameObject = nullptr;
 }
 
+void GameObjectManager::checkCollisions()
+{
+	for (GameObject* go : gameObjects)
+	{
+		for (GameObject* other : gameObjects)
+		{
+			if (go != other && go->getName() != other->getName())
+			{
+				Collider* c1 = go->getComponent<Collider>();
+				Collider* c2 = other->getComponent<Collider>();
+
+				if (c1 != nullptr && c2 != nullptr)
+				{
+					if (IsPointInCircle(c1->position.x, c1->position.y, c2->position.x, c2->position.y, c1->radius + c2->radius))
+					{
+						this->destroy(go);
+						this->destroy(other);
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+
+// source: https://stackoverflow.com/a/27342421/10470363
+bool IsPointInCircle(float xa, float ya, float xc, float yc, float r)
+{
+	return ((xa - xc) * (xa - xc) + (ya - yc) * (ya - yc)) < r * r;
+}
+
 GameObject* GameObjectManager::find(const std::string& name)
 {
 	for (std::vector<GameObject*>::iterator it = gameObjects.begin(); it != gameObjects.end(); ++it)
@@ -85,6 +118,8 @@ void GameObjectManager::update(float deltaTime)
 	{
 		go->update(deltaTime);
 	}
+
+	checkCollisions();
 }
 
 void GameObjectManager::draw()
