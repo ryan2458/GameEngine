@@ -36,6 +36,9 @@ void Movement::update(float deltaTime)
 		float x = glm::cos(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
 		float y = glm::sin(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
 
+		mBody->acceleration.x += glm::cos(glm::radians(mTransform->rotation)) * 0.05f;
+		mBody->acceleration.y += glm::sin(glm::radians(mTransform->rotation)) * 0.05f;
+
 		mTransform->trans(glm::vec3(x, y, 0.0f));
 	}
 
@@ -43,6 +46,10 @@ void Movement::update(float deltaTime)
 	{
 		float x = glm::cos(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
 		float y = glm::sin(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
+
+		mBody->acceleration.x -= glm::cos(glm::radians(mTransform->rotation)) * 0.05f;
+		mBody->acceleration.y -= glm::sin(glm::radians(mTransform->rotation)) * 0.05f;
+
 		mTransform->trans(glm::vec3(-x, -y, 0.0f));
 	}
 }

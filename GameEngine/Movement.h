@@ -12,11 +12,6 @@ private:
 	float mSpeed;
 	float mRotationSpeed;
 
-	glm::vec3 mVelocity;
-	glm::vec3 mAcceleration;
-
-	float mass;
-	float drag;
 public:
 	
 	Movement(float speed = 100.00f, float rotationSpeed = 200.00f);

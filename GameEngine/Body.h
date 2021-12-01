@@ -8,14 +8,13 @@
 class Body : public Component
 {
 private:
-	glm::vec3 position;
-	glm::vec3 acceleration;
 	float mass;
 	float drag;
 public:
 	glm::vec3 velocity;
+	glm::vec3 acceleration;
 
-	Body(glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 accel = glm::vec3(0.0f, 0.0f, 0.0f));
+	Body(glm::vec3 accel = glm::vec3(0.0f, 0.0f, 0.0f));
 	~Body();
 
 	void update(float deltaTime) override;
