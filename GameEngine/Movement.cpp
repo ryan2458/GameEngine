@@ -1,6 +1,5 @@
 #include "Movement.h"
-#include <cmath>
-#include <iostream>
+
 # define M_PI 3.14159265358979323846
 
 Movement::Movement(float speed, float rotationSpeed) : Component("Movement"), mBody(nullptr), mTransform(nullptr), mSpeed(speed), 
