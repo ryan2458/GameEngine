@@ -23,13 +23,6 @@ Transform& Transform::trans(const glm::vec3& vector)
 	return *this;
 }
 
-//void Transform::translate(glm::vec3 vector)
-//{
-//	glm::mat4 trans = glm::mat4(1.0f);
-//	trans = glm::translate(trans, vector);
-//	position = trans * position;
-//}
-
 Transform& Transform::rotate(const float angle)
 {	
 	rotation += angle;
