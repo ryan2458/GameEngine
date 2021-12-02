@@ -26,7 +26,7 @@ public:
 	// calls GLFW initialization functions
 	void initGLFW();
 	// creates a window
-	GLFWwindow* createWindow();
+	GLFWwindow* createWindow(int windowWidth = 800, int windowHeight = 600);
 	// returns a pointer to the main window
 	GLFWwindow* getWindow();
 	// calls all functions that set glfw callbacks at once

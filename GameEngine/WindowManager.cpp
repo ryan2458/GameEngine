@@ -19,9 +19,9 @@ void WindowManager::initGLFW()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
-GLFWwindow* WindowManager::createWindow()
+GLFWwindow* WindowManager::createWindow(int windowWidth, int windowHeight)
 {
-	GLFWwindow* window = glfwCreateWindow(800, 600, "Engine", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "Emojasteroids", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "ERROR: Failed to open window." << std::endl;
