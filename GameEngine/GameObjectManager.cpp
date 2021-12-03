@@ -103,7 +103,10 @@ GameObject* GameObjectManager::find(const std::string& name)
 
 void GameObjectManager::load()
 {
-
+	for (GameObject* go : gameObjects)
+	{
+		go->load();
+	}
 }
 
 void GameObjectManager::init()
@@ -116,11 +119,6 @@ void GameObjectManager::init()
 
 void GameObjectManager::update(float deltaTime)
 {
-	/*for (GameObject* go : gameObjects)
-	{
-		go->update(deltaTime);
-	}*/
-
 	for (size_t i = 0; i < gameObjects.size(); ++i)
 	{
 		gameObjects.at(i)->update(deltaTime);
@@ -145,5 +143,5 @@ void GameObjectManager::addObject(GameObject* toAdd)
 
 void GameObjectManager::unload()
 {
-	
+
 }
