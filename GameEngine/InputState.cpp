@@ -16,5 +16,7 @@ namespace InputState
         bool key_2 = false;
         bool key_3 = false;
         bool key_4 = false;
+
+        bool space = false;
 	};
 };

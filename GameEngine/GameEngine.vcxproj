@@ -152,12 +152,14 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="BasedObject.cpp" />
     <ClCompile Include="Movement.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -175,11 +177,13 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputState.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="BasedObject.h" />
     <ClInclude Include="Movement.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sprite.h" />
@@ -193,7 +197,11 @@
     <None Include="vertex.shader" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="asteroid.png" />
     <Image Include="awesomeface.png" />
+    <Image Include="enemyShip1.png" />
+    <Image Include="enemyShip2.png" />
+    <Image Include="enemyShip3.png" />
     <Image Include="spaceship.png" />
     <Image Include="square.png" />
   </ItemGroup>
@@ -202,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="space.mp3" />
+    <Media Include="spins.mp3" />
     <Media Include="splitters.mp3" />
     <Media Include="yellow.mp3" />
   </ItemGroup>

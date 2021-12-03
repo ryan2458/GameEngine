@@ -87,6 +87,12 @@
     <ClCompile Include="Collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -149,6 +155,12 @@
     <ClInclude Include="Collider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.shader">
@@ -168,6 +180,18 @@
     <Image Include="spaceship.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="enemyShip1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemyShip2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemyShip3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="asteroid.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">
@@ -178,5 +202,6 @@
     <Media Include="space.mp3" />
     <Media Include="splitters.mp3" />
     <Media Include="yellow.mp3" />
+    <Media Include="spins.mp3" />
   </ItemGroup>
 </Project>

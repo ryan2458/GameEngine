@@ -4,15 +4,6 @@
 
 bool IsPointInCircle(float xa, float ya, float xc, float yc, float r);
 
-GameObject* GameObjectManager::createGameObject()
-{
-	GameObject* gameObject = new GameObject();
-	gameObject->addComponent(new Transform());
-	gameObjects.push_back(gameObject);
-
-	return gameObject;
-}
-
 GameObjectManager::GameObjectManager() : BasedObject("GameObjectManager")
 {
 }
@@ -23,6 +14,14 @@ GameObjectManager::~GameObjectManager()
 	{
 		destroy(gameObjects.back());
 	}
+}
+
+GameObject* GameObjectManager::createGameObject()
+{
+	GameObject* gameObject = new GameObject();
+	gameObjects.push_back(gameObject);
+
+	return gameObject;
 }
 
 GameObject* GameObjectManager::create()
@@ -36,12 +35,6 @@ GameObject* GameObjectManager::create(const std::string& name)
 	gameObject->setName(name);
 	return gameObject;
 }
-
-//GameObject* GameObjectManager::create()
-//{
-//	GameObject* gameObject = createGameObject();
-//	//gameObject->setName(name);
-//}
 
 GameObject* GameObjectManager::create(glm::vec3 location)
 {
@@ -76,19 +69,16 @@ void GameObjectManager::checkCollisions()
 	{
 		for (GameObject* other : gameObjects)
 		{
-			if (go != other && go->getName() != other->getName())
-			{
-				Collider* c1 = go->getComponent<Collider>();
-				Collider* c2 = other->getComponent<Collider>();
+			Collider* c1 = go->getComponent<Collider>();
+			Collider* c2 = other->getComponent<Collider>();
 
-				if (c1 != nullptr && c2 != nullptr)
+			if (c1 != nullptr && c2 != nullptr && c1->getTag() != c2->getTag())
+			{
+				if (IsPointInCircle(c1->position.x, c1->position.y, c2->position.x, c2->position.y, c1->radius + c2->radius))
 				{
-					if (IsPointInCircle(c1->position.x, c1->position.y, c2->position.x, c2->position.y, c1->radius + c2->radius))
-					{
-						this->destroy(go);
-						this->destroy(other);
-						break;
-					}
+					this->destroy(go);
+					this->destroy(other);
+					break;
 				}
 			}
 		}
@@ -129,9 +119,14 @@ void GameObjectManager::init()
 
 void GameObjectManager::update(float deltaTime)
 {
-	for (GameObject* go : gameObjects)
+	/*for (GameObject* go : gameObjects)
 	{
 		go->update(deltaTime);
+	}*/
+
+	for (size_t i = 0; i < gameObjects.size(); ++i)
+	{
+		gameObjects.at(i)->update(deltaTime);
 	}
 
 	checkCollisions();

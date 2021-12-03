@@ -11,10 +11,16 @@ Input::~Input()
 
 void Input::processBasicInput(GLFWwindow* window)
 {
+	// *********** MISC ***********
+
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
+
+	// ****************************
+
+	// *********** MOVEMENT ************
 
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 	{
@@ -70,6 +76,11 @@ void Input::processBasicInput(GLFWwindow* window)
 		InputState::KeyPressed::q = false;
 	}
 
+	// **************************
+
+
+	// ****** SONG SELECTION BUTTONS **********
+
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
 	{
 		InputState::KeyPressed::key_1 = true;
@@ -104,6 +115,20 @@ void Input::processBasicInput(GLFWwindow* window)
 	else
 	{
 		InputState::KeyPressed::key_4 = false;
+	}
+
+	// *****************************
+
+	
+	// ******** WEAPON BUTTONS **********
+
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		InputState::KeyPressed::space = true;
+	}
+	else
+	{
+		InputState::KeyPressed::space = false;
 	}
 }
 

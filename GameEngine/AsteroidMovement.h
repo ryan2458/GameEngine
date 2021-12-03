@@ -6,7 +6,6 @@
 class AsteroidMovement : public Component 
 {
 private:
-	float mRotationTimer;
 	float mRotationAngle;
 	float mForwardSpeed;
 public:

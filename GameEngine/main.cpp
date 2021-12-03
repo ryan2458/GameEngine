@@ -9,6 +9,7 @@
 #include "Movement.h"
 #include "AsteroidMovement.h"
 #include "Collider.h"
+#include "Gun.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -25,12 +26,10 @@ int main()
 	GLFWwindow* window = WindowManager::getInstance().getWindow();
 	Engine* engine = &Engine::getInstance();
 
-	//se->play2D("splitters.mp3");
-
 	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
 	
 	createShip(gom, 50.0f);
-	createAsteroids(gom, 25, 100);
+	createAsteroids(gom, 10, 100);
 
 	gom->init();
 
@@ -55,12 +54,15 @@ void createAsteroids(GameObjectManager* gom, int count, int maxSize)
 	for (int i = 0; i < count; ++i)
 	{
 		float randSize = (float)(rand() % maxSize) + 50;
+		float randRotation = (float)(rand() % 360) + 1;
 		GameObject* asteroid = gom->create("Asteroid");
-		asteroid->transform->scale(glm::vec3(randSize, randSize, 0.0f));
 		asteroid->addComponent(new Body());
 		asteroid->addComponent(new AsteroidMovement());
-		asteroid->sprite->swapTexture("awesomeface.png");
 		asteroid->addComponent(new Collider(glm::vec2(asteroid->transform->position.x, asteroid->transform->position.y), randSize / 2.0f));
+		asteroid->getComponent<Collider>()->setTag("Enemy");
+		asteroid->transform->scale(glm::vec3(randSize, randSize, 0.0f));
+		asteroid->transform->rotate(randRotation);
+		asteroid->sprite->swapTexture("asteroid.png");
 	}
 }
 
@@ -69,14 +71,15 @@ void createShip(GameObjectManager* gom, int size)
 	int width, height;
 	glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
 
-	GameObject* ship = gom->create("ship");
+	GameObject* ship = gom->create(glm::vec3((float)width / 2.0f, (float)height / 2.0f, 0.0f), "Ship");
 	ship->transform->scale(glm::vec3(size, size, 0.0f));
-	ship->transform->trans(glm::vec3((float)width / 2.0f, (float)height / 2.0f, 0.0f));
 	ship->addComponent(new Body());
 	ship->addComponent(new Movement());
 	ship->addComponent(new Collider(glm::vec2(ship->transform->position.x, ship->transform->position.y), size / 2.0f));
+	ship->addComponent(new Gun());
+	ship->getComponent<Collider>()->setTag("Friend");
+	ship->getComponent<Gun>()->rotation = 90.0f;
 	ship->sprite->swapTexture("spaceship.png");
-	ship->setName("Ship");
 }
 
 void changeSong()

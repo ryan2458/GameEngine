@@ -8,6 +8,7 @@ namespace InputState
 		extern bool left, right, down, up;
 		extern bool e, q;
 		extern bool key_1, key_2, key_3, key_4;
+		extern bool space;
 	};
 };
 

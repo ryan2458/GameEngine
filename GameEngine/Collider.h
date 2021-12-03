@@ -8,7 +8,7 @@
 class Collider : public Component
 {
 private:
-	Transform* mTransform;
+	std::string collisionTag;
 public:
 	glm::vec2 position;
 	float radius;
@@ -19,6 +19,9 @@ public:
 	void init() override;
 	void update(float deltaTime) override;
 	void setName(const std::string& newName);
+
+	inline void setTag(const std::string& tag) { collisionTag = tag; }
+	inline const std::string& getTag() const { return collisionTag; }
 
 	inline Component* clone() override { return nullptr; }
 };
