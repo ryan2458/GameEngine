@@ -52,9 +52,6 @@ GameObject* GameObjectManager::create(glm::vec3 location, const std::string& nam
 	return gameObject;
 }
 
-// Ask Bar if gameObject is actually getting deleted here
-// Change code back to not setting gameObject to nullptr
-// Make it so gameObject is not a ref to a pointer
 void GameObjectManager::destroy(GameObject*& gameObject)
 {
 	std::vector<GameObject*>::iterator it = std::find(gameObjects.begin(), gameObjects.end(), gameObject);
