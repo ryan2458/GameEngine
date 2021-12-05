@@ -33,7 +33,7 @@ public:
 	T* getComponent();
 
 	Component* addComponent(Component* component);
-	void removeComponent(Component* component);
+	void removeComponent(Component*& component);
 
 	void addChild(GameObject* toAdd);
 	void removeChild(GameObject* toRemove);

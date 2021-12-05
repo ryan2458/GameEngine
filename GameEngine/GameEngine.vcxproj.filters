@@ -93,6 +93,9 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -161,6 +164,9 @@
     <ClInclude Include="Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.shader">
@@ -192,6 +198,18 @@
     <Image Include="asteroid.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="space.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="yellowShip.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bowlcut.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="alien.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">
@@ -203,5 +221,7 @@
     <Media Include="splitters.mp3" />
     <Media Include="yellow.mp3" />
     <Media Include="spins.mp3" />
+    <Media Include="tylerEffects.mp3" />
+    <Media Include="tylerNoEffects.mp3" />
   </ItemGroup>
 </Project>

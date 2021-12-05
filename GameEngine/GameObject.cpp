@@ -40,11 +40,12 @@ Component* GameObject::addComponent(Component* component)
 	return component;
 }
 
-void GameObject::removeComponent(Component* component)
+void GameObject::removeComponent(Component*& component)
 {
 	std::vector<Component*>::iterator it = std::find(components.begin(), components.end(), component);
 	delete component;
 	components.erase(it);
+	component = nullptr;
 }
 
 void GameObject::addChild(GameObject* toAdd)
@@ -75,9 +76,9 @@ void GameObject::init()
 
 void GameObject::update(float deltaTime)
 {
-	for (Component* comp : components)
+	for (size_t i = 0; i < components.size(); ++i)
 	{
-		comp->update(deltaTime);
+		components.at(i)->update(deltaTime);
 	}
 }
 
@@ -128,7 +129,6 @@ void GameObject::unload()
 
 void GameObject::destroy()
 {
-	unload();
 	while (!components.empty())
 	{
 		removeComponent(components.back());

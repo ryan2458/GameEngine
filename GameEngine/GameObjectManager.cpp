@@ -10,9 +10,9 @@ GameObjectManager::GameObjectManager() : BasedObject("GameObjectManager")
 
 GameObjectManager::~GameObjectManager()
 {
-	while (!gameObjects.empty())
+	for (int i = (int)gameObjects.size() - 1; i >= 0; --i)
 	{
-		destroy(gameObjects.back());
+		destroy(gameObjects.at(i));
 	}
 }
 
@@ -69,13 +69,16 @@ void GameObjectManager::checkCollisions()
 			Collider* c1 = go->getComponent<Collider>();
 			Collider* c2 = other->getComponent<Collider>();
 
-			if (c1 != nullptr && c2 != nullptr && c1->getTag() != c2->getTag())
+			if (!(go->getName() == "Projectile" && other->getName() == "Projectile"))
 			{
-				if (IsPointInCircle(c1->position.x, c1->position.y, c2->position.x, c2->position.y, c1->radius + c2->radius))
+				if (c1 != nullptr && c2 != nullptr && c1->getTag() != c2->getTag())
 				{
-					this->destroy(go);
-					this->destroy(other);
-					break;
+					if (IsPointInCircle(c1->position.x, c1->position.y, c2->position.x, c2->position.y, c1->radius + c2->radius))
+					{
+						this->destroy(go);
+						this->destroy(other);
+						break;
+					}
 				}
 			}
 		}

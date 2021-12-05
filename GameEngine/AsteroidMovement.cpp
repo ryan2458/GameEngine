@@ -18,6 +18,11 @@ void AsteroidMovement::update(float deltaTime)
 	getGameObject()->getComponent<Body>()->velocity.y = glm::sin(glm::radians(mRotationAngle)) * mForwardSpeed * deltaTime;
 }
 
+void AsteroidMovement::setForwardSpeed(float newSpeed)
+{
+	mForwardSpeed = newSpeed;
+}
+
 inline float AsteroidMovement::generateRandomAngle()
 {
 	return (float)((rand() % 360) + 1);

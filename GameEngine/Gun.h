@@ -1,6 +1,7 @@
 #ifndef GUN_H
 #define GUN_H
 
+#include "Engine.h"
 #include "Component.h"
 #include "glm/vec3.hpp"
 
@@ -11,19 +12,26 @@ private:
 	std::string projectileTag;
 	std::string projectileTexture;
 	float mTime;
+	std::vector<GameObject*> projectiles;
+
+	bool mIsAI; // is this a player or AI gun?
 public:
 	glm::vec3 position;
 	float rotation;
 	float FireRate;
+	float projectileSize;
 
-	Gun(float fireRate = 0.25f, const std::string& projectileTag = "Friend", const std::string& texture = "square.png");
+	Gun(float fireRate = 0.25f, float projectileSize = 50.0f, bool isAI = false, const std::string& projectileTag = "Friend", const std::string& texture = "square.png");
 	~Gun();
 
 	void update(float deltaTime) override;
 
-	void createAndFireProjectile(float size = 50.0f);
+	GameObject* createAndFireProjectile(float size = 50.0f);
+	GameObject* createAndFireAIProjectile(float size = 25.0f);
 
+	inline GameObjectManager* const getGameObjectManager() const { return gom; }
 	inline void setProjectileTag(const std::string& tag) { projectileTag = tag; }
+	inline void setProjectileTexture(const std::string& texture) { projectileTexture = texture; }
 	inline Component* clone() override { return nullptr; }
 };
 

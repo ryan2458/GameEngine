@@ -1,4 +1,3 @@
-#include "Engine.h"
 #include "Shader.h"
 #include "Mesh.h"
 #include "Texture.h"
@@ -10,6 +9,7 @@
 #include "AsteroidMovement.h"
 #include "Collider.h"
 #include "Gun.h"
+#include "EnemySpawner.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -26,10 +26,20 @@ int main()
 	GLFWwindow* window = WindowManager::getInstance().getWindow();
 	Engine* engine = &Engine::getInstance();
 
+	//se->play2D("tylerNoEffects.mp3", true);
+
 	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
-	
+
+	GameObject* go = gom->create("Background");
+	go->sprite->swapTexture("space.jpg");
+	go->transform->trans(glm::vec3(0.0f, 0.0f, 0.0f));
+	go->transform->scale(glm::vec3(1920.0f, 1080.0f, 0.0f));
+
 	createShip(gom, 50.0f);
 	createAsteroids(gom, 10, 100);
+
+	GameObject* spawner = gom->create(glm::vec3(0.0f, 0.0f, 2.0f), "EnemySpawner");
+	spawner->addComponent(new EnemySpawner(1, 5.0f));
 
 	gom->init();
 
@@ -76,10 +86,11 @@ void createShip(GameObjectManager* gom, int size)
 	ship->addComponent(new Body());
 	ship->addComponent(new Movement());
 	ship->addComponent(new Collider(glm::vec2(ship->transform->position.x, ship->transform->position.y), size / 2.0f));
-	ship->addComponent(new Gun());
+	ship->addComponent(new Gun(0.0f, 25.0f));
 	ship->getComponent<Collider>()->setTag("Friend");
 	ship->getComponent<Gun>()->rotation = 90.0f;
-	ship->sprite->swapTexture("spaceship.png");
+	ship->getComponent<Gun>()->setProjectileTexture("firefox.png");
+	ship->sprite->swapTexture("yellowShip.png");
 }
 
 void changeSong()

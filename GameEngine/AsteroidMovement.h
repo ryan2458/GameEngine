@@ -13,6 +13,8 @@ public:
 	~AsteroidMovement();
 
 	void update(float deltaTime) override;
+	
+	void setForwardSpeed(float newSpeed);
 	inline float generateRandomAngle();
 
 	inline Component* clone() override { return nullptr; }

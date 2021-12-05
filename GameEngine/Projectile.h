@@ -2,6 +2,10 @@
 #define PROJECTILE_H
 
 #include "Component.h"
+#include "Engine.h"
+
+
+class Transform;
 
 class Projectile : public Component
 {
@@ -13,6 +17,8 @@ public:
 	~Projectile();
 
 	void update(float deltaTime) override;
+
+	bool isVisible(Transform& transform, int width, int height);
 
 	inline Component* clone() override { return nullptr; }
 };
