@@ -20,8 +20,9 @@ public:
 	float rotation;
 	float FireRate;
 	float projectileSize;
+	float projectileAngle;
 
-	Gun(float fireRate = 0.25f, float projectileSize = 50.0f, bool isAI = false, const std::string& projectileTag = "Friend", const std::string& texture = "square.png");
+	Gun(float fireRate = 0.25f, float projectileAngle = 45.0f, float projectileSize = 50.0f, bool isAI = false, const std::string& projectileTag = "Friend", const std::string& texture = "square.png");
 	~Gun();
 
 	void update(float deltaTime) override;

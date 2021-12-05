@@ -10,6 +10,7 @@
 #include "Collider.h"
 #include "Gun.h"
 #include "EnemySpawner.h"
+#include "AsteroidSpawner.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -17,8 +18,14 @@
 irrklang::ISoundEngine* se = irrklang::createIrrKlangDevice();
 
 void changeSong();
+
+
+// defined in order needed to be called for drawing
+void createBackground(GameObjectManager* gom);
 void createAsteroids(GameObjectManager* gom, int count, int maxSize);
 void createShip(GameObjectManager* gom, int size);
+void createSpawners(GameObjectManager* gom);
+
 
 int main()
 {
@@ -29,17 +36,10 @@ int main()
 	//se->play2D("tylerNoEffects.mp3", true);
 
 	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
-
-	GameObject* go = gom->create("Background");
-	go->sprite->swapTexture("space.jpg");
-	go->transform->trans(glm::vec3(0.0f, 0.0f, 0.0f));
-	go->transform->scale(glm::vec3(1920.0f, 1080.0f, 0.0f));
-
+	
+	createBackground(gom);
 	createShip(gom, 50.0f);
-	createAsteroids(gom, 10, 100);
-
-	GameObject* spawner = gom->create(glm::vec3(0.0f, 0.0f, 2.0f), "EnemySpawner");
-	spawner->addComponent(new EnemySpawner(1, 5.0f));
+	createSpawners(gom);
 
 	gom->init();
 
@@ -57,6 +57,23 @@ int main()
 
 	glfwTerminate();
 	return 0;
+}
+
+void createSpawners(GameObjectManager* gom)
+{
+	GameObject* asteroidSpawner = gom->create(glm::vec3(0.0f, 0.0f, 2.0f), "AsteroidSpawner");
+	asteroidSpawner->addComponent(new AsteroidSpawner());
+
+	GameObject* spawner = gom->create(glm::vec3(0.0f, 0.0f, 2.0f), "EnemySpawner");
+	spawner->addComponent(new EnemySpawner(1, 5.0f));
+}
+
+void createBackground(GameObjectManager* gom)
+{
+	GameObject* go = gom->create("Background");
+	go->sprite->swapTexture("space.jpg");
+	go->transform->trans(glm::vec3(0.0f, 0.0f, 0.0f));
+	go->transform->scale(glm::vec3(1920.0f, 1080.0f, 0.0f));
 }
 
 void createAsteroids(GameObjectManager* gom, int count, int maxSize)
@@ -86,7 +103,7 @@ void createShip(GameObjectManager* gom, int size)
 	ship->addComponent(new Body());
 	ship->addComponent(new Movement());
 	ship->addComponent(new Collider(glm::vec2(ship->transform->position.x, ship->transform->position.y), size / 2.0f));
-	ship->addComponent(new Gun(0.0f, 25.0f));
+	ship->addComponent(new Gun(0.5f, 45.0f, 25.0f));
 	ship->getComponent<Collider>()->setTag("Friend");
 	ship->getComponent<Gun>()->rotation = 90.0f;
 	ship->getComponent<Gun>()->setProjectileTexture("firefox.png");

@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AsteroidMovement.cpp" />
+    <ClCompile Include="AsteroidSpawner.cpp" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -171,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsteroidMovement.h" />
+    <ClInclude Include="AsteroidSpawner.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="callbacks.h" />
     <ClInclude Include="Collider.h" />

@@ -5,6 +5,7 @@
 #include "AsteroidMovement.h"
 #include "Body.h"
 #include "Gun.h"
+#include <cstdlib>
 
 EnemySpawner::EnemySpawner(int count, int time) : Component("EnemySpawner"), spawnCount(count), spawnTime(time),
 	gom(&Engine::getInstance().gameObjectManager)
@@ -35,7 +36,7 @@ void EnemySpawner::update(float deltaTime)
 		enemyShip->addComponent(new Body());
 		enemyShip->addComponent(new AsteroidMovement());
 		enemyShip->addComponent(new Collider(enemyShip->transform->position, enemyShip->transform->scalar.x));
-		enemyShip->addComponent(new Gun(0.25f, 25.0f, true, "Enemy"));
+		enemyShip->addComponent(new Gun(0.75f, (float)((std::rand() % 360) + 1), 25.0f, true, "Enemy", "firefox.png"));
 
 		enemyShip->getComponent<AsteroidMovement>()->setForwardSpeed(50.0f);
 		enemyShip->getComponent<Collider>()->setTag("Enemy");
