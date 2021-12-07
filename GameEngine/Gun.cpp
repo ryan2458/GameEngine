@@ -26,11 +26,11 @@ void Gun::update(float deltaTime)
 	{
 		if (!mIsAI && InputState::KeyPressed::space)
 		{
-			projectiles.push_back(createAndFireProjectile(projectileSize));
+			createAndFireProjectile(projectileSize);
 		}
 		else if(mIsAI)
 		{
-			projectiles.push_back(createAndFireAIProjectile(projectileSize));
+			createAndFireAIProjectile(projectileSize);
 		}
 
 		mTime = 0.0f;

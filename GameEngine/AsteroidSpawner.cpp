@@ -1,3 +1,10 @@
+/*
+Author: Nick Gerth
+Last Edit: 12/5/2021
+File: AsteroidSpawner.cpp
+Description: Periodically creates new asteroids via the GameObjectManager
+*/
+
 #include "AsteroidSpawner.h"
 #include "Engine.h"
 #include "WindowManager.h"
@@ -5,6 +12,7 @@
 #include "AsteroidMovement.h"
 #include "Collider.h"
 
+// initializes members and spawns an initial number of asteroids
 AsteroidSpawner::AsteroidSpawner(float timer, int initialSpawnCount) : Component("AsteroidSpawner"), timer(timer)
 {
 	for (int i = 0; i < initialSpawnCount; ++i)
@@ -19,6 +27,7 @@ AsteroidSpawner::~AsteroidSpawner()
 
 void AsteroidSpawner::update(float deltaTime)
 {
+	// used to keep track of when we'll spawn another asteroid
 	static float elapsedTime = 0.0f;
 
 	elapsedTime += deltaTime;
@@ -34,6 +43,13 @@ void AsteroidSpawner::update(float deltaTime)
 	}
 }
 
+/*
+Function Name: createAsteroid()
+parameters: none
+pre-condition: none
+returns: none
+Description: creates a game object via the GameObjectManager that represents an asteroid
+*/
 void AsteroidSpawner::createAsteroid()
 {
 	int maxSize = 100.0f;

@@ -15,7 +15,7 @@ public:
 	Transform();
 	~Transform();
 
-	Transform& trans(const glm::vec3& vector);
+	Transform& translate(const glm::vec3& vector);
 	// keeping these for now just in case
 	//void translate(glm::vec3 vector);
 	//Transform& translate(const glm::vec3& vector);

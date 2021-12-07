@@ -39,7 +39,7 @@ void Movement::update(float deltaTime)
 		mBody->acceleration.x += glm::cos(glm::radians(mTransform->rotation)) * 0.05f;
 		mBody->acceleration.y += glm::sin(glm::radians(mTransform->rotation)) * 0.05f;
 
-		mTransform->trans(glm::vec3(x, y, 0.0f));
+		mTransform->translate(glm::vec3(x, y, 0.0f));
 	}
 
 	if (InputState::KeyPressed::down)
@@ -50,7 +50,7 @@ void Movement::update(float deltaTime)
 		mBody->acceleration.x -= glm::cos(glm::radians(mTransform->rotation)) * 0.05f;
 		mBody->acceleration.y -= glm::sin(glm::radians(mTransform->rotation)) * 0.05f;
 
-		mTransform->trans(glm::vec3(-x, -y, 0.0f));
+		mTransform->translate(glm::vec3(-x, -y, 0.0f));
 	}
 }
 

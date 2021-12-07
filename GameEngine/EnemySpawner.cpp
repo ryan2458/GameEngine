@@ -31,7 +31,7 @@ void EnemySpawner::update(float deltaTime)
 		
 		glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 		GameObject* enemyShip = gom->create(position, "EnemyShip");
-		enemyShip->transform->trans(glm::vec3((float)width - 10.0f, 10.0f, 0.0f));
+		enemyShip->transform->translate(glm::vec3((float)width - 10.0f, 10.0f, 0.0f));
 		enemyShip->transform->rotate(0.0f);
 		enemyShip->addComponent(new Body());
 		enemyShip->addComponent(new AsteroidMovement());

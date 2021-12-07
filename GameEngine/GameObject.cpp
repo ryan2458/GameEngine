@@ -1,3 +1,10 @@
+/*
+File: GameObject.cpp
+Author: Ryan Aloof
+Last Edit: 12/4/2021
+Description: Handles generation, destruction, and component addition/removal for a game object
+*/
+
 #include "Component.h"
 #include "WindowManager.h"
 #include "GameObject.h"
@@ -6,6 +13,13 @@
 
 void checkPosition(Transform& transform);
 
+
+/*
+Function: generateDefaultName()
+Pre-condition: none
+Returns: a string used for the gameobject name
+Description: Generates a default name for a GameObject if no name is provided at construction
+*/
 std::string GameObject::generateDefaultName()
 {
 	static int count = 0;
@@ -33,6 +47,13 @@ GameObject::~GameObject()
 	destroy();
 }
 
+/*
+Function: addComponent()
+Parameters: component [a pointer to the component to add]
+Pre-condition: memory for component must be allocated outside of call
+Description: Adds the component to the GameObject and sets the components parent to this
+Returns: A pointer to the component added
+*/
 Component* GameObject::addComponent(Component* component)
 {
 	components.push_back(component);
@@ -40,6 +61,13 @@ Component* GameObject::addComponent(Component* component)
 	return component;
 }
 
+/*
+Function: removeComponent()
+Parameters: component [a reference to a pointer to the component to remove]
+Pre-condition: component must point to valid memory
+Description: Removes the component from the GameObject and sets its pointer to nullptr
+Returns: none
+*/
 void GameObject::removeComponent(Component*& component)
 {
 	std::vector<Component*>::iterator it = std::find(components.begin(), components.end(), component);
@@ -48,16 +76,33 @@ void GameObject::removeComponent(Component*& component)
 	component = nullptr;
 }
 
+/*
+Function: addChild()
+Parameters: a pointer to a GameObject
+Description: Adds the GameObject to the parent GameObject and sets the added GameObject to this
+Returns: none
+*/
 void GameObject::addChild(GameObject* toAdd)
 {
 	toAdd->setParent(this);
 }
 
+/*
+Function: removeChild()
+Parameters: a pointer to a GameObject
+Description: Removes the child GameObject from the parent GameObject
+Returns: none
+*/
 void GameObject::removeChild(GameObject* toRemove)
 {
 	toRemove->setParent(nullptr);
 }
 
+/*
+Function: load()
+Description: Calls all overloaded load() functions for all the components.
+Returns: none
+*/
 void GameObject::load()
 {
 	for (Component* comp : components)
@@ -66,6 +111,11 @@ void GameObject::load()
 	}
 }
 
+/*
+Function: init()
+Description: Calls all overloaded init() functions for all the components.
+Returns: none
+*/
 void GameObject::init()
 {
 	for (Component* comp : components)
@@ -74,6 +124,13 @@ void GameObject::init()
 	}
 }
 
+/*
+Function: update()
+Description: Calls all overloaded update() functions for all the components.
+Returns: none
+Remarks: Note the use of a regular for-loop instead of a for-each.  This is to avoid issues related to invalid iterators
+		 if game objects or components are deleted between updates
+*/
 void GameObject::update(float deltaTime)
 {
 	for (size_t i = 0; i < components.size(); ++i)
@@ -82,17 +139,24 @@ void GameObject::update(float deltaTime)
 	}
 }
 
+/*
+Function: draw()
+Description: draws the GameObject to the screen via calls to the Renderer class
+Returns: none
+*/
 void GameObject::draw()
 {
 	checkPosition(*transform);
 	Renderer::getInstance().render(*transform, *sprite);
-	//checkPosition(transform);
-	//glm::vec2 size = glm::vec2(transform->scalar.x, transform->scalar.y);
-	//glm::vec2 position = glm::vec2(transform->position.x, transform->position.y);
-	//float angle = transform->angle;
-	//Renderer::getInstance().render(size, position, angle, sprite);
 }
 
+/*
+Function: checkPosition()
+Params: A reference to the GameObject's Transform (for position)
+Description: Checks the position of an object via its Transform component.  If the object goes outside window bounds, its 
+		     position is updated to appear on the opposite side of the screen via calls to translate in Transform
+Returns: none
+*/
 void checkPosition(Transform& transform)
 {
 	int width, height;
@@ -100,25 +164,30 @@ void checkPosition(Transform& transform)
 
 	if (transform.position.x < 0.0f)
 	{
-		transform.trans(glm::vec3((float)width, 0.0f, 0.0f));
+		transform.translate(glm::vec3((float)width, 0.0f, 0.0f));
 	}
 
 	if (transform.position.x > (float)width)
 	{
-		transform.trans(glm::vec3(-(float)width, 0.0f, 0.0f));
+		transform.translate(glm::vec3(-(float)width, 0.0f, 0.0f));
 	}
 
 	if (transform.position.y < 0.0f)
 	{
-		transform.trans(glm::vec3(0.0f, (float)height, 0.0f));
+		transform.translate(glm::vec3(0.0f, (float)height, 0.0f));
 	}
 
 	if (transform.position.y > (float)height)
 	{
-		transform.trans(glm::vec3(0.0f, -(float)height, 0.0f));
+		transform.translate(glm::vec3(0.0f, -(float)height, 0.0f));
 	}
 }
 
+/*
+Function: unload()
+Description: Calls all overloaded unload() functions for all the components.
+Returns: none
+*/
 void GameObject::unload()
 {
 	for (Component* comp : components)
@@ -127,6 +196,11 @@ void GameObject::unload()
 	}
 }
 
+/*
+Function: destroy()
+Description: removes and destroys all components on the object, if any
+Returns: none
+*/
 void GameObject::destroy()
 {
 	while (!components.empty())

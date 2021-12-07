@@ -17,7 +17,7 @@ void Body::update(float deltaTime)
 
 	velocity += acceleration;
 
-	getGameObject()->transform->trans(velocity);
+	getGameObject()->transform->translate(velocity);
 }
 
 Component* Body::clone()

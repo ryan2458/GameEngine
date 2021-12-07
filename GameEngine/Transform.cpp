@@ -16,7 +16,7 @@ Transform::~Transform()
 {
 }
 
-Transform& Transform::trans(const glm::vec3& vector)
+Transform& Transform::translate(const glm::vec3& vector)
 {
 	position += vector;
 	mTransform = glm::translate(mTransform, vector);
