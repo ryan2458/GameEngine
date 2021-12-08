@@ -16,7 +16,6 @@ public:
 	Collider(glm::vec2 newPos, float newRadius);
 	~Collider();
 
-	void init() override;
 	void update(float deltaTime) override;
 	void setName(const std::string& newName);
 

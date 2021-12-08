@@ -8,6 +8,7 @@
 class Body : public Component
 {
 private:
+	// planned to implement, never implemented
 	float mass;
 	float drag;
 public:
