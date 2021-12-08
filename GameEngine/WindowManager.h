@@ -1,3 +1,8 @@
+/*
+Author: Ryan Aloof
+Description: Handles logic for creating and managing a single window in OpenGL using GLFW
+*/
+
 #ifndef WINDOW_MANAGER_H
 #define WINDOW_MANAGER_H
 
@@ -32,6 +37,7 @@ public:
 	// calls all functions that set glfw callbacks at once
 	void setCallbacks();
 
+	// to be called at the end of each frame
 	void endFrame();
 };
 

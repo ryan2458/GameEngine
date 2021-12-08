@@ -10,7 +10,6 @@ Description: Contains header for a BasedObject, the most based of all objects
 
 #include <string>
 
-
 /*
 A BasedObject is the class all other classes derive from.  This class is abstract by design.  All deriving classes
 may optionally override the provided virtual functions.

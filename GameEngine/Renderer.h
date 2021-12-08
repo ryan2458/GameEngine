@@ -1,3 +1,8 @@
+/*
+Author: Ryan Aloof
+Description: Handles logic for rendering and drawing objects to screen.  This class follows a singleton pattern
+*/
+
 #ifndef RENDERER_H
 #define RENDERER_H
 
@@ -27,9 +32,23 @@ public:
 	// don't worry about implementing this
 	void renderEngine(GLFWwindow* window);
 
+	/*
+	Description: sets the projection matrix for opengl to use
+	*/
 	void setProjectionMatrix(float width, float height);
 
+
+	/*
+	Description: sets background color of window using rgba
+	*/
 	static void setBackgroundColor(const glm::vec4& color);
+
+	/*
+	Function(s): render
+	Params: overloaded, but ultimately makes call using a size, position, angle, Mesh, Texture, Shader, and tint
+	Description: Handles logic to call into OpenGL to render and draw the object passed in from whichever draw() function
+				 called render.  Implementation really isn't necessary for the user to know
+	*/
 
 	static void render(Transform& transform, Sprite& sprite, 
 		Shader* shader = nullptr, 

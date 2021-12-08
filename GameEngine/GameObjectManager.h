@@ -42,7 +42,6 @@ public:
 	void init()                  override;
 	void update(float deltaTime) override;
 	void draw()                  override;
-	void unload()                override;
 };
 
 #endif

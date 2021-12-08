@@ -1,3 +1,9 @@
+/*
+Author: Ryan Aloof, Joey de Vries (learnopengl.com)
+Description: Handles logic for using and calling into shaders for OpenGL.
+             A lot of this code comes from the section on shaders on learnopengl.com
+*/
+
 #ifndef SHADER_H
 #define SHADER_H
 

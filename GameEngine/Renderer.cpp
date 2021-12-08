@@ -1,3 +1,8 @@
+/*
+Author: Ryan Aloof
+File: Renderer.cpp
+*/
+
 #include "Renderer.h"
 
 Renderer::Renderer() : defaultTexture(Texture("square.png")), defaultShader(Shader("vertex.shader", "fragment.shader")),
@@ -13,6 +18,7 @@ void Renderer::renderEngine(GLFWwindow* window)
 
 void Renderer::setProjectionMatrix(float width, float height)
 {
+	// use othrographic projection
 	projection = glm::ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
 }
 
@@ -29,6 +35,7 @@ void Renderer::render(Transform& transform, Sprite& sprite, Shader* shader, cons
 
 void Renderer::render(Transform& transform, Mesh* mesh, Texture* texture, Shader* shader, const glm::vec4& tint)
 {
+	// Use default mesh, texture, and/or shader if caller doesn't provide one
 	if (mesh == nullptr)
 	{
 		mesh = &Renderer::getInstance().defaultMesh;
@@ -43,7 +50,6 @@ void Renderer::render(Transform& transform, Mesh* mesh, Texture* texture, Shader
 	}
 
 	shader->use();
-
 	glm::mat4 model = glm::mat4(1.0f);
 
 	glm::vec3 position = transform.position;
@@ -58,6 +64,7 @@ void Renderer::render(Transform& transform, Mesh* mesh, Texture* texture, Shader
 
 	model = glm::scale(model, glm::vec3(scalar));
 
+	// call into opengl for rendering
 	shader->setMatrix4("model", model);
 	shader->setMatrix4("projection", getInstance().projection);
 	shader->setVector4f("spriteColor", tint);
@@ -74,6 +81,7 @@ void Renderer::render(Transform& transform, Mesh* mesh, Texture* texture, Shader
 
 	mesh->bind();
 
+	// this is where we actually draw in opengl
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	mesh->unbind();
 
