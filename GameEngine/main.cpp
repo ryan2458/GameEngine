@@ -5,6 +5,7 @@ File: main.cpp
 Description: Handles all initial calls for creation of Game Engine and Game Objects to start a game of Asteroids
 */
 
+#include "UnitTest.h"
 #include "Shader.h"
 #include "Mesh.h"
 #include "Texture.h"
@@ -33,27 +34,22 @@ void createPlayerShip(GameObjectManager* gom, int size);
 void createSpawners(GameObjectManager* gom);
 
 
-bool testsPassed();
-bool TestEngine();
-bool TestGameObjectManager();
-bool TestRenderer();
-bool TestWindowManager();
-bool TestSprite(const std::string& texturePath);
-
 int main()
 {
 	srand((unsigned int)time(NULL)); // std::rand() is used in the application, so set the seed
 
-	/*if (!testsPassed())
+	UnitTest test;
+	
+	if (test.passed())
+	{
+		std::cout << "TEST CASES::PASSED" << std::endl;
+	}
+	else
 	{
 		std::cout << "TEST CASES::FAILED" << std::endl;
 		glfwTerminate();
 		return 0;
 	}
-	else
-	{
-		std::cout << "TEST CASES::PASSED" << std::endl;
-	}*/
 
 	GLFWwindow* window = WindowManager::getInstance().getWindow(); // first call to getInstance() creates window
 	Engine* engine = &Engine::getInstance(); // first call to getInstance() creates an Engine
@@ -100,47 +96,6 @@ void createSpawners(GameObjectManager* gom)
 
 	GameObject* spawner = gom->create(glm::vec3(0.0f, 0.0f, 2.0f), "EnemySpawner");
 	spawner->addComponent(new EnemySpawner(1, 5.0f));
-}
-
-bool testsPassed()
-{
-	return TestEngine() && TestGameObjectManager() && TestRenderer() && TestWindowManager()
-		&& TestSprite("awesomeface.png");
-}
-
-bool TestEngine()
-{
-	Engine* engine = &Engine::getInstance();
-
-	return engine != nullptr;
-}
-
-bool TestGameObjectManager()
-{
-	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
-
-	return gom != nullptr;
-}
-
-bool TestRenderer()
-{
-	Renderer* renderer = &Renderer::getInstance();
-
-	return renderer != nullptr;
-}
-
-bool TestWindowManager()
-{
-	WindowManager* wManager = &WindowManager::getInstance();
-
-	return wManager != nullptr;
-}
-
-bool TestSprite(const std::string& texturePath)
-{
-	Sprite sprite(texturePath);
-
-	return sprite.getTexture()->getTexturePath() == texturePath;
 }
 
 /*

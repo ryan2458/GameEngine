@@ -173,6 +173,9 @@
     <ClInclude Include="AsteroidSpawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UnitTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex.shader">
@@ -223,8 +226,14 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="space.mp3" />
-    <Media Include="splitters.mp3" />
-    <Media Include="yellow.mp3" />
+    <Media Include="space.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="splitters.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="yellow.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
