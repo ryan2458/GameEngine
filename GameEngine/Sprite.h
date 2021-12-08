@@ -1,3 +1,7 @@
+/*
+Authors: Ryan Aloof, Anne Tansengco
+*/
+
 #ifndef SPRITE_H
 #define SPRITE_H
 

@@ -1,7 +1,11 @@
+/*
+Author: Ryan Aloof
+File: Movement.cpp
+Description: Component that allows for an object to move via player input
+*/
+
 #include "Movement.h"
 #include "GameObject.h"
-
-# define M_PI 3.14159265358979323846
 
 Movement::Movement(float speed, float rotationSpeed) : Component("Movement"), mBody(nullptr), mTransform(nullptr), mSpeed(speed), 
 	mRotationSpeed(rotationSpeed)
@@ -14,11 +18,11 @@ Movement::~Movement()
 
 void Movement::init()
 {
+	// a Body and Transform component are required for this script to work
 	mBody = getGameObject()->getComponent<Body>();
 	mTransform = getGameObject()->getComponent<Transform>();
 }
 
-// TODO: Need linear drag
 void Movement::update(float deltaTime)
 {
 	if (InputState::KeyPressed::left)
@@ -33,6 +37,7 @@ void Movement::update(float deltaTime)
 
 	if (InputState::KeyPressed::up)
 	{
+		// change forward direction based on player rotation
 		float x = glm::cos(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
 		float y = glm::sin(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
 
@@ -44,6 +49,7 @@ void Movement::update(float deltaTime)
 
 	if (InputState::KeyPressed::down)
 	{
+		// change backward direction based on player rotation
 		float x = glm::cos(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
 		float y = glm::sin(glm::radians(mTransform->rotation)) * mSpeed * deltaTime;
 
@@ -54,6 +60,7 @@ void Movement::update(float deltaTime)
 	}
 }
 
+// Implemented to make compiler happy
 Component* Movement::clone()
 {
 	return nullptr;

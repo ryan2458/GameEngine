@@ -1,3 +1,7 @@
+/*
+Author: Jordan Brooks
+*/
+
 #ifndef ENEMY_SPAWNER_H
 #define ENEMY_SPAWNER_H
 

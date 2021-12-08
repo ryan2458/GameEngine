@@ -1,3 +1,7 @@
+/*
+Author: Ryan Aloof
+*/
+
 #ifndef GAME_OBJECT_MANAGER_H
 #define GAME_OBJECT_MANAGER_H
 

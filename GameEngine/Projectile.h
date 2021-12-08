@@ -1,3 +1,7 @@
+/*
+Authors: Jordan Brooks, Anne Tansengco
+*/
+
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 

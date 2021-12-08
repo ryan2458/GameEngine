@@ -1,3 +1,7 @@
+/*
+Authors: Jordan Brooks, Anne Tansengco
+*/
+
 #include "Gun.h"
 #include "InputState.h"
 #include "Body.h"
@@ -39,15 +43,15 @@ void Gun::update(float deltaTime)
 	}
 }
 
-/* 
-Function: createAndFireProjectile()
 
-*/
 GameObject* Gun::createAndFireProjectile(float size)
 {
+	// create a game object representing a projectile
 	GameObject* gameObject = gom->create(position, "Projectile");
 	gameObject->transform->rotate(rotation);
 	gameObject->transform->scale(glm::vec3(size, size, 0.0f));
+
+	// add components needed for projectile
 	gameObject->addComponent(new Body());
 	gameObject->addComponent(new Projectile(rotation, 250.0f));
 	gameObject->addComponent(new Collider(glm::vec2(position.x, position.y), size / 2.0f));

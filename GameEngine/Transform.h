@@ -1,3 +1,7 @@
+/*
+Authors: Ryan Aloof, Jordan Brooks
+*/
+
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
@@ -16,9 +20,6 @@ public:
 	~Transform();
 
 	Transform& translate(const glm::vec3& vector);
-	// keeping these for now just in case
-	//void translate(glm::vec3 vector);
-	//Transform& translate(const glm::vec3& vector);
 	Transform& rotate(const float angle);
 	void scale(const glm::vec3& scale);
 

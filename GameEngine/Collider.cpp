@@ -1,5 +1,5 @@
 /*
-Author: Nick gerth
+Author: Nick Gerth
 Last Edit: 12/7/2021
 File: Collider.cpp
 Description: Handles initialization and position updates for a component that represents a circle collider

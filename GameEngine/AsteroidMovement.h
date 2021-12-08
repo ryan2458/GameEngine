@@ -1,3 +1,7 @@
+/*
+Author: Nick Gerth
+*/
+
 #ifndef ASTEROID_MOVEMENT_H
 #define ASTEROID_MOVEMENT_H
 
