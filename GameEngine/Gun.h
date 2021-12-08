@@ -1,3 +1,9 @@
+/*
+Authors: Jordan Brooks, Anne Tansengco
+File: Gun.h
+Description: Contains header for code for a gun component
+*/
+
 #ifndef GUN_H
 #define GUN_H
 
@@ -12,7 +18,6 @@ private:
 	std::string projectileTag;
 	std::string projectileTexture;
 	float mTime;
-	std::vector<GameObject*> projectiles;
 
 	bool mIsAI; // is this a player or AI gun?
 public:

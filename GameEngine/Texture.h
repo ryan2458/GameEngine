@@ -21,6 +21,7 @@ public:
 
 	inline int getWidth()  const { return width; }
 	inline int getHeight() const { return height; }
+	inline std::string getTexturePath() const { return filepath; }
 
 	void bind() const;
 	void unbind() const;

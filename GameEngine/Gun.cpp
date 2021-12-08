@@ -17,6 +17,7 @@ Gun::~Gun()
 
 void Gun::update(float deltaTime)
 {
+	// update position and rotation of gun
 	position = getGameObject()->transform->position;
 	rotation = getGameObject()->transform->rotation;
 
@@ -24,6 +25,7 @@ void Gun::update(float deltaTime)
 
 	if (mTime >= FireRate)
 	{
+		// is this a player or an enemy ship?
 		if (!mIsAI && InputState::KeyPressed::space)
 		{
 			createAndFireProjectile(projectileSize);
@@ -37,6 +39,10 @@ void Gun::update(float deltaTime)
 	}
 }
 
+/* 
+Function: createAndFireProjectile()
+
+*/
 GameObject* Gun::createAndFireProjectile(float size)
 {
 	GameObject* gameObject = gom->create(position, "Projectile");

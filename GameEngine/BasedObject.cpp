@@ -1,8 +1,8 @@
 #include "BasedObject.h"
 
-BasedObject::BasedObject(const std::string& name) : parent(nullptr)
+BasedObject::BasedObject(const std::string& name) : parent(nullptr), name(name)
 {
-	this->name = name;
+
 }
 
 //*******************

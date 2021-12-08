@@ -1,3 +1,7 @@
+/*
+Authors: Jordan Brooks, Anne Tansengco
+*/
+
 #include "Projectile.h"
 #include "GameObject.h"
 #include "Body.h"
