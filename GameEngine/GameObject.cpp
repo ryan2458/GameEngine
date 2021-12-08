@@ -1,6 +1,6 @@
 /*
 File: GameObject.cpp
-Author: Ryan Aloof
+Author: Ryan Aloof, Anne Tansengco
 Last Edit: 12/4/2021
 Description: Handles generation, destruction, and component addition/removal for a game object
 */
@@ -157,29 +157,29 @@ Description: Checks the position of an object via its Transform component.  If t
 		     position is updated to appear on the opposite side of the screen via calls to translate in Transform
 Returns: none
 */
-void checkPosition(Transform& transform)
+void checkPosition(Transform& transform) 
 {
-	int width, height;
-    glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height);
+	int width, height; // width and height of window
+    glfwGetWindowSize(WindowManager::getInstance().getWindow(), &width, &height); // getting size of window
 
-	if (transform.position.x < 0.0f)
+	if (transform.position.x < 0.0f) // if object position is outside the window to the left
 	{
-		transform.translate(glm::vec3((float)width, 0.0f, 0.0f));
+		transform.translate(glm::vec3((float)width, 0.0f, 0.0f)); // move object to far right of the screen
 	}
 
-	if (transform.position.x > (float)width)
+	if (transform.position.x > (float)width) // if object position is outside the window to the right
 	{
-		transform.translate(glm::vec3(-(float)width, 0.0f, 0.0f));
+		transform.translate(glm::vec3(-(float)width, 0.0f, 0.0f)); // move object to the far left of the screen
 	}
 
-	if (transform.position.y < 0.0f)
+	if (transform.position.y < 0.0f) // if object position is outside the window at the top
 	{
-		transform.translate(glm::vec3(0.0f, (float)height, 0.0f));
+		transform.translate(glm::vec3(0.0f, (float)height, 0.0f)); // move object to bottom of screen
 	}
 
-	if (transform.position.y > (float)height)
+	if (transform.position.y > (float)height) // if object position is outside the window at the bottom
 	{
-		transform.translate(glm::vec3(0.0f, -(float)height, 0.0f));
+		transform.translate(glm::vec3(0.0f, -(float)height, 0.0f)); // move object to top of screen
 	}
 }
 

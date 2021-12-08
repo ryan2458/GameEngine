@@ -1,12 +1,17 @@
+/*
+Authors: Anne Tansengco
+*/
+
 #include "Input.h"
 
 Input::Input()
 {
-	
+	// :()
 }
 
 Input::~Input()
 {
+	// :)
 }
 
 void Input::processBasicInput(GLFWwindow* window)

@@ -1,5 +1,10 @@
+/*
+Authors: Anne Tansengco
+*/
+
 #include "InputState.h"
 
+// if a key needs to be added, has to be set to false here
 namespace InputState
 {
 	namespace KeyPressed
