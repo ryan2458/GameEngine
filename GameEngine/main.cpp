@@ -54,6 +54,8 @@ int main()
 	GLFWwindow* window = WindowManager::getInstance().getWindow(); // first call to getInstance() creates window
 	Engine* engine = &Engine::getInstance(); // first call to getInstance() creates an Engine
 
+	se->play2D("splitters.mp3", true);
+
 	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
 	
 	/**** Setup objects at start of game ****/

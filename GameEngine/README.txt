@@ -14,6 +14,8 @@ Down Arrow - Backward movement
 Left Arrow - CounterClockwise rotation
 Right Arrow - Clockwise rotation
 
+Number Keys 1-4 - change songs
+
 
 Required Libaries and Includes: https://drive.google.com/file/d/1TT4KrDzJF3TSo4Fc3s2wXqAfXYFVhELW/view?usp=sharing
 Don't forget to add libraries and includes in your C++/Linker settings in Visual Studio!
