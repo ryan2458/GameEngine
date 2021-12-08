@@ -21,7 +21,7 @@ void WindowManager::initGLFW()
 
 GLFWwindow* WindowManager::createWindow(int windowWidth, int windowHeight)
 {
-	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "Emojasteroids", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "Asteroids", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "ERROR: Failed to open window." << std::endl;

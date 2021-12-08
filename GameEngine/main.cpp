@@ -42,11 +42,11 @@ int main()
 	
 	if (test.passed())
 	{
-		std::cout << "TEST CASES::PASSED" << std::endl;
+		std::cout << "LOG: TEST CASES::PASSED" << std::endl;
 	}
 	else
 	{
-		std::cout << "TEST CASES::FAILED" << std::endl;
+		std::cout << "ERROR: TEST CASES::FAILED" << std::endl;
 		glfwTerminate();
 		return 0;
 	}
@@ -107,6 +107,8 @@ Description: responsible for creating the background space image that is drawn b
 void createBackground(GameObjectManager* gom)
 {
 	GameObject* go = gom->create("Background");
+	//go->addComponent(new Body());
+	//go->addComponent(new Movement());
 	go->sprite->swapTexture("space.jpg");
 	go->transform->translate(glm::vec3(0.0f, 0.0f, 0.0f));
 	go->transform->scale(glm::vec3(1920.0f, 1080.0f, 0.0f));
