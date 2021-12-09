@@ -54,7 +54,7 @@ int main()
 	GLFWwindow* window = WindowManager::getInstance().getWindow(); // first call to getInstance() creates window
 	Engine* engine = &Engine::getInstance(); // first call to getInstance() creates an Engine
 
-	se->play2D("splitters.mp3", true);
+	//se->play2D("splitters.mp3", true);
 
 	GameObjectManager* gom = &Engine::getInstance().gameObjectManager;
 	
@@ -109,8 +109,6 @@ Description: responsible for creating the background space image that is drawn b
 void createBackground(GameObjectManager* gom)
 {
 	GameObject* go = gom->create("Background");
-	//go->addComponent(new Body());
-	//go->addComponent(new Movement());
 	go->sprite->swapTexture("space.jpg");
 	go->transform->translate(glm::vec3(0.0f, 0.0f, 0.0f));
 	go->transform->scale(glm::vec3(1920.0f, 1080.0f, 0.0f));
@@ -157,7 +155,7 @@ void createPlayerShip(GameObjectManager* gom, int size)
 	ship->addComponent(new Body());
 	ship->addComponent(new Movement());
 	ship->addComponent(new Collider(glm::vec2(ship->transform->position.x, ship->transform->position.y), size / 2.0f));
-	ship->addComponent(new Gun(0.5f, 45.0f, 25.0f));
+	ship->addComponent(new Gun(0.0f, 45.0f, 25.0f));
 	ship->getComponent<Collider>()->setTag("Friend");
 	ship->getComponent<Gun>()->rotation = 90.0f;
 	ship->getComponent<Gun>()->setProjectileTexture("firefox.png");

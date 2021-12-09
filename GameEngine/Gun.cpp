@@ -12,7 +12,7 @@ Authors: Jordan Brooks, Anne Tansengco
 Gun::Gun(float fireRate, float projectileAngle, float projectileSize, bool isAI, const std::string& projectileTag, const std::string& texture) : Component("Gun"), position(glm::vec3(0.0f, 0.0f, 0.0f)), rotation(0.0f), gom(&Engine::getInstance().gameObjectManager),
 	FireRate(fireRate), projectileAngle(projectileAngle), projectileSize(projectileSize), mTime(0.0f), mIsAI(isAI), projectileTag(projectileTag), projectileTexture(texture)
 {
-	setParent(gom->find("Ship"));
+
 }
 
 Gun::~Gun()
@@ -65,6 +65,21 @@ GameObject* Gun::createAndFireProjectile(float size)
 GameObject* Gun::createAndFireAIProjectile(float size)
 {
 	GameObject* gameObject = gom->create(position, "Projectile");
+
+	GameObject* playerShip = gom->find("Ship");
+
+	// fires at player
+	if (playerShip != nullptr)
+	{
+		glm::vec3 position = playerShip->transform->position;
+		glm::vec3 enemyPosition = gameObject->transform->position;
+
+		glm::vec3 dir = position - enemyPosition;
+		dir = glm::normalize(dir);
+
+		projectileAngle = glm::degrees(atan2f(dir.y, dir.x));
+	}
+
 	gameObject->transform->rotate(projectileAngle);
 	gameObject->transform->scale(glm::vec3(size, size, 0.0f));
 	gameObject->addComponent(new Body());
