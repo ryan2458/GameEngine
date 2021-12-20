@@ -1,3 +1,7 @@
+/*
+Author: Ryan Aloof, Joey de Vries (learnopengl.com)
+*/
+
 #include "Shader.h"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath)

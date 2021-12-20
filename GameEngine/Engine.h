@@ -1,3 +1,9 @@
+/*
+Author: Ryan Aloof
+File: Engine.h
+Description: Contains header for Engine, the class that starts the Game Engine
+*/
+
 #ifndef ENGINE_H
 #define ENGINE_H
 
@@ -11,7 +17,6 @@
 
 #include <iostream>
 
-#include "callbacks.h"
 #include "BasedObject.h"
 #include "GameObjectManager.h"
 

@@ -1,3 +1,7 @@
+/*
+Author: Ryan Aloof
+*/
+
 #ifndef GAME_OBJECT_MANAGER_H
 #define GAME_OBJECT_MANAGER_H
 
@@ -16,14 +20,21 @@ class GameObjectManager : public BasedObject
 {
 private:
 	std::vector<GameObject*> gameObjects;
+
+	GameObject* createGameObject();
 public:
 	GameObjectManager();
+	~GameObjectManager();
 
-	void create();
-	//void create(glm::vec2* size, glm::vec2* position);
+	GameObject* create();
+	GameObject* create(const std::string& name);
+	GameObject* create(glm::vec3 location);
+	GameObject* create(glm::vec3 location, const std::string& name);
 
 	void addObject(GameObject* toAdd);
-	void destroy(GameObject* gameObject);
+	void destroy(GameObject*& gameObject);
+
+	void checkCollisions();
 
 	GameObject* find(const std::string& name);
 
@@ -31,9 +42,6 @@ public:
 	void init()                  override;
 	void update(float deltaTime) override;
 	void draw()                  override;
-	void unload()                override;
-
-
 };
 
 #endif

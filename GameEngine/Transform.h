@@ -1,3 +1,7 @@
+/*
+Authors: Ryan Aloof, Jordan Brooks
+*/
+
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
@@ -6,33 +10,18 @@
 
 class Transform : public Component
 {
-private:
-	glm::vec4 position;
-	glm::vec3 scalar;
-	float angle;
-
 public:
+	glm::mat4 mTransform;
+	glm::vec3 position;
+	glm::vec3 scalar;
+	float rotation;
+
 	Transform();
-	Transform(const Transform& copy);
 	~Transform();
 
-	Transform& operator=(const Transform& rhs);
-
-	double getX() const;
-	double getY() const;
-	double getAngle() const;
-	double getScaleX() const;
-	double getScaleY() const;
-
-	void setX(double newX);
-	void setY(double newY);
-	void setAngle(double newAngle);
-	void setScaleX(double newScaleX);
-	void setScaleY(double newScaleY);
-
-	void translate(glm::vec3 vector);
-	void rotate(float radians);
-	void scale(glm::vec3 scalar);
+	Transform& translate(const glm::vec3& vector);
+	Transform& rotate(const float angle);
+	void scale(const glm::vec3& scale);
 
 	Component* clone() override;
 };

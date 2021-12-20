@@ -1,103 +1,52 @@
+/*
+Authors: Ryan Aloof, Jordan Brooks
+*/
+
 #include "Transform.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/transform.hpp>
 
-Transform::Transform() : Component("Transform"), position(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f)), 
-	scalar(glm::vec3(0.5f, 0.5f, 1.0f)), 
-	angle(90.0f)
+Transform::Transform() : Component("Transform"), mTransform(glm::mat4(1.0f)), position(glm::vec3(0.0f, 0.0f, 0.0f)),
+	scalar(glm::vec3(50.0f, 50.0f, 1.0f)), 
+	rotation(0.0f)
 {
 	
-}
-
-Transform::Transform(const Transform& copy) : Component(copy.getName())
-{
-	*this = copy;
 }
 
 Transform::~Transform()
 {
 }
 
-Transform& Transform::operator=(const Transform& rhs)
+Transform& Transform::translate(const glm::vec3& vector)
 {
-	if (this != &rhs)
-	{
-		position = glm::vec4(rhs.getX(), rhs.getY(), 0.0f, 1.0f);
-		scalar = glm::vec3(rhs.getScaleX(), rhs.getScaleY(), 1.0f);
-		angle = rhs.getAngle();
-	}
+	position += vector; // update position vector
+	mTransform = glm::translate(mTransform, vector); // update position matrix with new vector
+	return *this; // return reference to this to allow chained calls
+}
+
+Transform& Transform::rotate(const float angle)
+{	
+	rotation += angle; // update internal rotation
+
+	glm::mat4 rot = glm::mat4(1.0f); // identity matrix
+	rot = glm::translate(mTransform, glm::vec3(0.5f, 0.5f, 0.0f)); // offset to rotate about center of object
+	rot = glm::rotate(rot, glm::radians(angle), glm::vec3(0.0f, 0.0f, 1.0f)); // rotate about z-axis
+	mTransform = glm::translate(rot, glm::vec3(-0.5f, -0.5f, 0.0f)); // undo the offset
 
 	return *this;
 }
 
-double Transform::getX() const
+void Transform::scale(const glm::vec3& scale)
 {
-	return position.x;
+	scalar = scale; // set internal scale
+	scalar.z = 1.0f; // avoids rendering issues
+	mTransform = glm::scale(scalar); // apply scaling to transform matrix
 }
 
-double Transform::getY() const
-{
-	return position.y;
-}
-
-double Transform::getAngle() const
-{
-	return angle;
-}
-
-double Transform::getScaleX() const
-{
-	return scalar.x;
-}
-
-double Transform::getScaleY() const
-{
-	return scalar.y;
-}
-
-void Transform::setX(double newX)
-{
-	position.x = newX;
-}
-
-void Transform::setY(double newY)
-{
-	position.y = newY;
-}
-
-void Transform::setAngle(double newAngle)
-{
-	angle = newAngle;
-}
-
-void Transform::setScaleX(double newScaleX)
-{
-	scalar.x = newScaleX;
-}
-
-void Transform::setScaleY(double newScaleY)
-{
-	scalar.y = newScaleY;
-}
-
-void Transform::translate(glm::vec3 vector)
-{
-	glm::mat4 trans = glm::mat4(1.0f);
-	trans = glm::translate(trans, vector);
-	position = trans * position;
-}
-
-void Transform::rotate(float radians)
-{
-
-}
-
-void Transform::scale(glm::vec3 scalar)
-{
-}
-
+// As it stands, I see no reason for this to be cloned.
 Component* Transform::clone()
 {
 	return nullptr;
