@@ -1,12 +1,3 @@
-Team Members:
-Ryan Aloof
-Nicholas Gerth
-Jordan Brooks
-Anne Tansengco
-
-Demo Video: https://www.dropbox.com/s/vuo600itz09kro1/PA%209%20Recording.mkv?dl=0
-
-
 Directions for Game Demo (Asteroids)
 ------------------------------------
 Up Arrow - Forward movement
