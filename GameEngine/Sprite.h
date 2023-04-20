@@ -17,7 +17,7 @@ private:
 
 public:
 	Sprite(const std::string& texturePath = "square.png");
-	~Sprite();
+	~Sprite() override;
 
 	void swapTexture(const std::string& texturePath);
 

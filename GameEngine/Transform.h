@@ -17,7 +17,7 @@ public:
 	float rotation;
 
 	Transform();
-	~Transform();
+	~Transform() override;
 
 	Transform& translate(const glm::vec3& vector);
 	Transform& rotate(const float angle);

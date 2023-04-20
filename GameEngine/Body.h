@@ -20,7 +20,7 @@ public:
 	glm::vec3 acceleration;
 
 	Body(glm::vec3 accel = glm::vec3(0.0f, 0.0f, 0.0f));
-	~Body();
+	~Body() override;
 
 	void update(float deltaTime) override;
 

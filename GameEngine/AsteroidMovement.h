@@ -14,7 +14,7 @@ private:
 	float mForwardSpeed;
 public:
 	AsteroidMovement();
-	~AsteroidMovement();
+	~AsteroidMovement() override;
 
 	void update(float deltaTime) override;
 	

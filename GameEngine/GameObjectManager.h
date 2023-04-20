@@ -24,7 +24,7 @@ private:
 	GameObject* createGameObject();
 public:
 	GameObjectManager();
-	~GameObjectManager();
+	~GameObjectManager() override;
 
 	GameObject* create();
 	GameObject* create(const std::string& name);

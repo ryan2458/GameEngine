@@ -112,6 +112,8 @@ void createBackground(GameObjectManager* gom)
 	go->sprite->swapTexture("space.jpg");
 	go->transform->translate(glm::vec3(0.0f, 0.0f, 0.0f));
 	go->transform->scale(glm::vec3(1920.0f, 1080.0f, 0.0f));
+	//go->addComponent(new Body());
+	//go->addComponent(new Movement());
 }
 
 /*

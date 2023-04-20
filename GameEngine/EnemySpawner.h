@@ -18,7 +18,7 @@ private:
 
 public:
 	EnemySpawner(int count, int time);
-	~EnemySpawner();
+	~EnemySpawner() override;
 
 	void update(float deltaTime) override;
 

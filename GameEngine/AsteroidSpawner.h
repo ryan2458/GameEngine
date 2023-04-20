@@ -17,7 +17,7 @@ private:
 public:
 
 	AsteroidSpawner(float timer = 5.0f, int initialSpawnCount = 5);
-	~AsteroidSpawner();
+	~AsteroidSpawner() override;
 
 	// called each frame
 	void update(float deltaTime) override;

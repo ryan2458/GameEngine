@@ -24,7 +24,7 @@ class Engine : public BasedObject {
 private:
 	float initialTime;
 	Engine();
-	~Engine();
+	~Engine() override;
 public:
 	static Engine& getInstance()
 	{

@@ -20,7 +20,7 @@ private:
 public:
 	
 	Movement(float speed = 100.00f, float rotationSpeed = 200.00f);
-	~Movement();
+	~Movement() override;
 
 	void init() override;
 	void update(float deltaTime) override;

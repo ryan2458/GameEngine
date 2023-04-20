@@ -18,7 +18,7 @@ private:
 	float projectileSpeed;
 public:
 	Projectile(float angle = 0.0f, float speed = 10.0f);
-	~Projectile();
+	~Projectile() override;
 
 	void update(float deltaTime) override;
 
